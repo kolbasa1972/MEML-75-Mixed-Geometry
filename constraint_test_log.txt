@@ -1,0 +1,87 @@
+██████████████████████████████████████████████████████████████████████████
+  MEML 75 — EXTENDED RESIDUAL SYMMETRY TEST   [cores = 4]
+██████████████████████████████████████████████████████████████████████████
+
+Baseline (unconstrained, refined global scan v2):
+  tau_l    = (1.5398+1.5511j)
+  c1,c2,c3 = 6.371, 17.46, -17.199
+  chi2     = 8.9442e-02  (master reference: 8.9400e-02)
+  m_bb     = 8.287 meV  (standard PMNS, vanishing Majorana phases)
+
+How far is each constraint from the baseline values?
+  Constraint           expression              value      |·|
+  sum_zero             c1 + c2 + c3 = 0      +6.6320   6.6320
+  c1_eq_minus_c3       c1 + c3 = 0          -10.8280  10.8280
+  c1_eq_c2             c1 = c2              -11.0890  11.0890
+  c1_plus_c2_zero      c1 + c2 = 0          +23.8310  23.8310
+  c2_plus_c3_zero      c2 + c3 = 0           +0.2610   0.2610
+  c1_eq_c3             c1 = c3              +23.5700  23.5700
+  c2_eq_c3             c2 = c3              +34.6590  34.6590
+
+  [HINT] Smallest |·| = closest to baseline -> most likely to PASS.
+  Most promising a priori: 'c2_plus_c3_zero' (|c2 + c3 = 0| = 0.2610)
+
+==========================================================================
+PHASE 1. Fix tau_l = baseline, DE over 2 free c's
+==========================================================================
+
+  Constraint               chi2_min         c1         c2         c3    verdict
+  sum_zero               1.5127e+03      2.024     14.512    -16.536       FAIL
+  c1_eq_minus_c3         4.1278e+03     16.741     10.466    -16.741       FAIL
+  c1_eq_c2               1.7718e+03    -13.320    -13.320     17.029       FAIL
+  c1_plus_c2_zero        6.9801e+03    -10.481     10.481      4.692       FAIL
+  c2_plus_c3_zero        6.0602e+00     -6.307    -17.233     17.233       FAIL
+  c1_eq_c3               6.9139e+03     10.125    -15.429     10.125       FAIL
+  c2_eq_c3               5.5474e+03     18.171     -9.583     -9.583       FAIL
+
+==========================================================================
+PHASE 2. Full DE over (Re tau, Im tau, 2 free c's)
+==========================================================================
+
+  Constraint               chi2_min     Re tau     Im tau         c1         c2         c3    verdict
+  sum_zero               3.8804e+01      0.967      1.409      0.353     15.831    -16.184       FAIL
+  c1_eq_minus_c3         1.9437e+03      1.592      1.270    -17.410    -10.334     17.410       FAIL
+  c1_eq_c2               5.4596e+02      2.000      1.365    -14.118    -14.118     19.179       FAIL
+  c1_plus_c2_zero        6.4881e+02     -0.028      1.526    -25.899     25.899     13.945       FAIL
+  c2_plus_c3_zero        3.0828e-01      1.584      1.552     -6.591    -17.400     17.400         OK
+  c1_eq_c3               6.9715e+02     -0.000      1.754      9.063    -21.098      9.063       FAIL
+  c2_eq_c3               2.4239e+03      0.019      1.126    -30.527     18.481     18.481       FAIL
+
+==========================================================================
+PHASE 3. Predictions (baseline vs best constrained fits that are
+        PASS or MARGINAL, i.e. chi2 < 2.0)
+        m_bb uses the STANDARD PDG PMNS matrix, vanishing Majorana
+        phases (consistent with master.py and the article).
+==========================================================================
+                         m1 [meV] m2 [meV] m3 [meV]   sum [eV]  mbb [meV]  delta [deg]
+  Baseline               m1=  6.473 m2= 10.786 m3= 50.575  sum=  0.0678  mbb=  8.287  delta=  28.10
+  c2_plus_c3_zero        m1=  6.390 m2= 10.751 m3= 50.550  sum=  0.0677  mbb=  8.370  delta=  22.96
+    chi2 = 3.0828e-01  (baseline 8.9442e-02)
+      m1_meV     shift =   -1.29%
+      m2_meV     shift =   -0.33%
+      m3_meV     shift =   -0.05%
+      sum_mi_eV  shift =   -0.21%
+      m_bb_meV   shift =   +1.01%
+      delta_CP   shift =  -18.31%
+
+==========================================================================
+VERDICT
+==========================================================================
+  Constraint           expr                       chi2 verdict
+  sum_zero             c1 + c2 + c3 = 0     3.8804e+01 FAIL
+  c1_eq_minus_c3       c1 + c3 = 0          1.9437e+03 FAIL
+  c1_eq_c2             c1 = c2              5.4596e+02 FAIL
+  c1_plus_c2_zero      c1 + c2 = 0          6.4881e+02 FAIL
+  c2_plus_c3_zero      c2 + c3 = 0          3.0828e-01 PASS
+  c1_eq_c3             c1 = c3              6.9715e+02 FAIL
+  c2_eq_c3             c2 = c3              2.4239e+03 FAIL
+
+  Summary: 1 PASS, 0 MARGINAL, 6 FAIL
+
+  [RECOMMENDATION] Adopt a PASS constraint. N_eff -> 17,
+                   N_dof^fit -> -1, N_dof^total -> +2.
+                   PASS: c2_plus_c3_zero (c2 + c3 = 0), chi2 = 3.0828e-01
+
+==========================================================================
+  DONE (8.5s)
+=====================================================
