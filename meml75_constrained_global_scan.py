@@ -16,6 +16,11 @@ Method: joint DE over (Re tau, Im tau, c1, c2) with c3 = -c2.
            (close to reported 1.584 + 1.552i)
   Also: 4 seeds (42, 43, 44, 45) to check stability.
 
+Sign convention: the global sign ambiguity M -> -M leaves |M| and chi2
+invariant. We canonicalize every solution to sum(c) < 0, i.e. c1 < 0
+(with c3 = -c2), which matches the article (c1 = -6.591, c2 = -17.400,
+c3 = +17.400) and master_verification_log.txt.
+
 Reference values (from v2 global scan, unconstrained):
     tau_u = 1.539847 + 1.551070i
     c_u   = (6.371, 17.460, -17.199)
@@ -133,9 +138,12 @@ def chi2_l_mnu(M, Lam_nu_eV):
 
 
 def canonicalize(c):
-    """Fix sign ambiguity: M -> -M leaves chi2 invariant."""
+    """Fix sign ambiguity: M -> -M leaves chi2 invariant.
+    Canonical choice: sum(c) < 0, i.e. c1 < 0 (with c3 = -c2).
+    This matches the article: c1 = -6.591, c2 = -17.400, c3 = +17.400.
+    """
     c = np.asarray(c)
-    if np.sum(c) < 0:
+    if np.sum(c) > 0:
         return -c
     return c
 
@@ -160,6 +168,9 @@ def de_constrained(args):
             chi2_wrap, bounds, maxiter=500, popsize=25,
             seed=seed, tol=1e-10, polish=True, workers=1)
         Re, Im, c1, c2 = res.x
+        # Apply canonical sign convention BEFORE returning.
+        # M -> -M leaves chi2 invariant, so this does not change res.fun.
+        c1, c2 = canonicalize([c1, c2])
         return dict(
             seed=seed,
             Re=float(Re), Im=float(Im),
@@ -179,6 +190,7 @@ def main():
     print(f"  Constraint: c3 = -c2  (c2 + c3 = 0)")
     print(f"  Region: Re tau in [1.4, 1.8], Im tau in [1.4, 1.7]")
     print(f"  DE: maxiter=500, popsize=25, tol=1e-10, 4 seeds")
+    print(f"  Sign convention: canonicalized to sum(c) < 0 (matches article)")
     print("=" * 74)
     t_start = time.time()
 
@@ -288,7 +300,6 @@ def main():
     print("  INTERPRETATION")
     print("=" * 74)
 
-    # Is the scan better than reported?
     improvement = chi2_c_reported - best['chi2']
     if improvement > 0.01:
         print(f"""

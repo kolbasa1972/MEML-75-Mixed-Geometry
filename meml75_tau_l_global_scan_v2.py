@@ -9,7 +9,10 @@ Fixes vs. v1:
   (2) c averaging uses canonical sign — previously sign-flipped
       solutions averaged to half-scale
   (3) Pre-scan diagnostic at tau = 1.5398+1.5511i (reported unconstrained
-      minimum, chi2 = 0.227) and other tau values
+      minimum, chi2 = 0.089) and other tau values
+  (4) FINAL RESULTS collapses minima that converged to the same point
+      after Stage 3 (cosmetic; previously two identical rows appeared)
+  (5) Interpretation text: "p-value" -> "chi2", corrected tau on second line
 
 Runtime (4 cores): ~3-6 min.
 
@@ -213,6 +216,24 @@ def cluster_by_tau(items, dRe, dIm):
     return clusters
 
 
+def collapse_verified_minima(verified, dRe=0.01, dIm=0.01):
+    """Collapse verified minima that converged to the same point after Stage 3."""
+    if len(verified) <= 1:
+        return verified
+    sorted_v = sorted(verified, key=lambda v: v['chi2'])
+    kept = [sorted_v[0]]
+    for v in sorted_v[1:]:
+        is_dup = False
+        for k in kept:
+            if (abs(v['Re'] - k['Re']) < dRe and
+                abs(v['Im'] - k['Im']) < dIm):
+                is_dup = True
+                break
+        if not is_dup:
+            kept.append(v)
+    return kept
+
+
 def main():
     n_cores = min(4, cpu_count())
     print("=" * 74)
@@ -238,9 +259,9 @@ def main():
     print("[Pre-scan diagnostic] DE over c at fixed tau (4 seeds)")
     print("-" * 74)
     diag_taus = [
-        (1.5398, 1.5511),  # claimed unconstrained minimum, chi2 = 0.227
-        (1.5424, 1.5559),  # best grid point from v1 scan, chi2 = 0.481
-        (1.5840, 1.5520),  # constrained baseline, chi2 = 0.309
+        (1.5398, 1.5511),  # refined global minimum (chi2 = 0.089)
+        (1.5424, 1.5559),  # best grid point from v1 scan (chi2 = 0.48)
+        (1.5840, 1.5520),  # constrained baseline (chi2 = 0.309)
         (1.4407, 1.5559),  # v1 second cluster
     ]
     diag_args = [(Re, Im, s)
@@ -264,8 +285,8 @@ def main():
 
     print("""
   [Interpretation]
-    chi2 = 0.227 at tau = 1.5398+1.5511i → pasp value reproducible
-    chi2 = 0.48  at tau = 1.5398+1.5511i → pasp value NOT reproducible
+    chi2 = 0.089 at tau = 1.5398+1.5511i -> chi2 reproducible
+    chi2 = 0.48  at tau = 1.5424+1.5559i -> chi2 NOT reproducible
                                            (joint tau+c fit needed)
 """)
 
@@ -358,6 +379,13 @@ def main():
             all_chi2=chis.tolist(),
         ))
 
+    # Collapse minima that converged to the same point after Stage 3
+    n_before_collapse = len(verified)
+    verified = collapse_verified_minima(verified, dRe=0.01, dIm=0.01)
+    if n_before_collapse > len(verified):
+        print(f"  [Collapse] {n_before_collapse} Stage-3 minima -> "
+              f"{len(verified)} distinct point(s)")
+
     # ---- Final report ----
     print("\n" + "=" * 74)
     print("  FINAL RESULTS")
@@ -419,6 +447,7 @@ def main():
         'stage1_candidates': cands,
         'stage2_refined':    res2,
         'verified_minima':   verified,
+        'n_before_collapse': n_before_collapse,
         'constrained_baseline': {
             'tau_l': [1.584, 1.552],
             'c':     [-6.591, -17.400, 17.400],

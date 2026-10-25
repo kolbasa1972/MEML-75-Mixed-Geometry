@@ -20,13 +20,24 @@ For each constraint:
   Phase 2: full DE over (Re tau, Im tau, + 2 free c's)
 
 Verdict thresholds:
-  chi2_min < 0.5    -> PASS       (adopt, N_eff -> 17)
+  chi2_min < 0.5    -> PASS       (adopt)
   0.5 <= chi2 < 2.0 -> MARGINAL   (discuss chi2 cost)
   chi2 >= 2.0       -> FAIL       (do NOT adopt)
 
 Expected outcome (v16.0):
   Only 'c2_plus_c3_zero' PASSes (chi2 ~ 0.309);
   the other six FAIL at chi2 > 38.
+
+Balance (baseline = unconstrained 3-c fit = variant C of the article):
+  Baseline (variant C, no reduction):
+      N_Lagr = 18, N_eff = 19, N_obs = 16, N_pred = 3
+      N_dof^fit = 16 - 19 = -3
+      N_dof^total = (16+3) - 19 = 0
+  Adopting c2 + c3 = 0 (variant B of the article):
+      N_Lagr = 17, N_eff = 18
+      N_dof^fit = 16 - 18 = -2
+      N_dof^total = (16+3) - 18 = +1
+  This matches Table in Section 13 of the article and master_verification_log.txt.
 
 Phase 3 convention: m_bb is computed with the STANDARD PDG PMNS matrix
 and vanishing Majorana phases, consistent with master.py (m_bb = 8.369 meV
@@ -383,8 +394,13 @@ if __name__ == '__main__':
     print(f"\n  Summary: {n_pass} PASS, {n_marg} MARGINAL, {n_fail} FAIL")
 
     if n_pass > 0:
-        print(f"\n  [RECOMMENDATION] Adopt a PASS constraint. N_eff -> 17,")
-        print(f"                   N_dof^fit -> -1, N_dof^total -> +2.")
+        print(f"\n  [RECOMMENDATION] Adopt a PASS constraint.")
+        print(f"                   Baseline is the unconstrained 3-c fit (variant C):")
+        print(f"                     N_Lagr = 18, N_eff = 19, N_dof^fit = -3, N_dof^total = 0")
+        print(f"                   After imposing the PASS constraint (variant B):")
+        print(f"                     N_Lagr: 18 -> 17 (with theta_i: N_eff: 19 -> 18)")
+        print(f"                     N_dof^fit: -3 -> -2, N_dof^total: 0 -> +1")
+        print(f"                   (matches Table in Section 13 and master_verification_log.txt)")
         pass_names = [c for c in CONSTRAINTS if best2[c]['chi2'] < 0.5]
         for c in pass_names:
             print(f"                   PASS: {c} ({CONSTRAINT_LABELS[c]}), "
@@ -393,7 +409,7 @@ if __name__ == '__main__':
         print(f"\n  [RECOMMENDATION] Discuss a MARGINAL constraint in the text,")
         print(f"                   stating the chi2 cost. Do NOT reduce N_eff silently.")
     else:
-        print(f"\n  [RECOMMENDATION] Keep 3 independent c_i. N_eff = 18.")
+        print(f"\n  [RECOMMENDATION] Keep 3 independent c_i. N_eff = 19 (variant C).")
         print(f"                   Report in §8: residual symmetries of the S4'")
         print(f"                   structure are incompatible with the data.")
 

@@ -1,3 +1,5 @@
+
+
 ██████████████████████████████████████████████████████████████████████████
   MEML 75 — EXTENDED RESIDUAL SYMMETRY TEST   [cores = 4]
 ██████████████████████████████████████████████████████████████████████████
@@ -78,10 +80,16 @@ VERDICT
 
   Summary: 1 PASS, 0 MARGINAL, 6 FAIL
 
-  [RECOMMENDATION] Adopt a PASS constraint. N_eff -> 17,
-                   N_dof^fit -> -1, N_dof^total -> +2.
+  [RECOMMENDATION] Adopt a PASS constraint.
+                   Baseline is the unconstrained 3-c fit (variant C):
+                     N_Lagr = 18, N_eff = 19, N_dof^fit = -3, N_dof^total = 0
+                   After imposing the PASS constraint (variant B):
+                     N_Lagr: 18 -> 17 (with theta_i: N_eff: 19 -> 18)
+                     N_dof^fit: -3 -> -2, N_dof^total: 0 -> +1
+                   (matches Table in Section 13 and master_verification_log.txt)
                    PASS: c2_plus_c3_zero (c2 + c3 = 0), chi2 = 3.0828e-01
 
 ==========================================================================
-  DONE (8.5s)
-=====================================================
+  DONE (9.4s)
+==========================================================================
+
