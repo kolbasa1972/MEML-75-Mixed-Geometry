@@ -5,7 +5,7 @@
 
 # MEML 75 — Mixed Geometry (v16.0)
 
-Model of quark and lepton masses from \(T^2/\mathbb{Z}_3 \times T^2/\mathbb{Z}_4\) geometry, with axion-like dark matter and leptogenesis.
+Model of quark and lepton masses from $T^2/\mathbb{Z}_3 \times T^2/\mathbb{Z}_4$ geometry, with axion-like dark matter and leptogenesis.
 
 ## Status
 
@@ -14,10 +14,10 @@ Model of quark and lepton masses from \(T^2/\mathbb{Z}_3 \times T^2/\mathbb{Z}_4
 
 ## Key Physics Results
 
-- **18 effective parameters** (17 Lagrangian + ALP misalignment angle \(\theta_i\)) fitting **16 observables**.
-- \(N_{\rm dof}^{\rm fit} = -2\), \(N_{\rm dof}^{\rm total} = +1\).
-- **3 Conditional Predictions:** \(\delta_{CP} \approx 23^\circ\) or \(157^\circ\), \(\sum m_i \approx 0.068\) eV, and \(m_{\beta\beta} \approx 8.37\) meV (range \(0\)–\(8.7\) meV, entirely below KamLAND-Zen).
-- **ALP Dark Matter:** \(f_a = 1.9801 \times 10^{11}\) GeV, \(m_a = 28.407\ \mu\)eV, \(\nu_a = 6.8688\) GHz. Testable at ADMX/HAYSTAC.
+- **18 effective parameters** (17 Lagrangian + ALP misalignment angle $\theta_i$) fitting **16 observables**.
+- $N_{\rm dof}^{\rm fit} = -2$, $N_{\rm dof}^{\rm total} = +1$.
+- **3 Conditional Predictions:** $\delta_{CP} \approx 23^\circ$ or $157^\circ$, $\sum m_i \approx 0.068$ eV, and $m_{\beta\beta} \approx 8.37$ meV (range $0$–$8.7$ meV, entirely below KamLAND-Zen).
+- **ALP Dark Matter:** $f_a = 1.9801 \times 10^{11}$ GeV, $m_a = 28.407~\mu$eV, $\nu_a = 6.8688$ GHz. Testable at ADMX/HAYSTAC.
 - **5 Honest Negative Results:** Explicitly detailed in Section 14.
 
 ## Files
