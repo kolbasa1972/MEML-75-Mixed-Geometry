@@ -3,7 +3,7 @@ message: "If you use this model or code, please cite it as below."
 authors:
   - family-names: "Yurov"
     given-names: "D. V."
-title: "Model MEML 75 (v16.0): Quark and lepton mass matrices from mixed geometry"
+title: "Model MEML 75 (v16.0): Quark and lepton mass matrices from mixed geometry with axion-like dark matter and leptogenesis"
 version: 16.0
 doi: 10.5281/zenodo.23638606
 date-released: 2026-10-25
