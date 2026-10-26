@@ -3,18 +3,18 @@
 """
 MEML 75 — GLOBAL SCAN of tau_l with joint DE (v17.0, corrected v2)
 
+Note: In v17.0, the lepton modulus tau_l is interpreted as being
+topologically stabilized by GVW fluxes (-15, 4, -4). However, we still
+perform the unconstrained global scan to explicitly demonstrate that
+the data strongly prefers this generic point over exact symmetry points,
+and to establish the unconstrained baseline for model selection.
+
 Fixes vs. v1:
   (1) Stage 2/3 use joint DE over (Re tau, Im tau, c1, c2, c3)
-      — previously tau was fixed, so true minimum was missed
-  (2) c averaging uses canonical sign — previously sign-flipped
-      solutions averaged to half-scale
-  (3) Pre-scan diagnostic at tau = 1.5398+1.5511i (reported unconstrained
-      minimum, chi2 = 0.089) and other tau values
+  (2) c averaging uses canonical sign
+  (3) Pre-scan diagnostic at tau = 1.5398+1.5511i and other tau values
   (4) FINAL RESULTS collapses minima that converged to the same point
-      after Stage 3 (cosmetic; previously two identical rows appeared)
-  (5) Interpretation text: "p-value" -> "chi2", corrected tau on second line
-
-Runtime (4 cores): ~3-6 min.
+  (5) Interpretation text updated
 
 Usage:
     python meml75_tau_l_global_scan_v2.py
@@ -26,10 +26,10 @@ import numpy as np
 from scipy.optimize import minimize, differential_evolution
 from multiprocessing import Pool, cpu_count
 
-# ============ Constants (matching master.py v16.0) ============
+# ============ Constants (matching master.py v17.0) ============
 PI        = np.pi
 v_EW      = 246.22
-M_6_REF   = 2.9646e16
+M_6_REF   = 2.964555e16
 y_nu      = 0.934
 LAMBDA_NU = (y_nu**2 * v_EW**2 / M_6_REF) * 1e9
 
@@ -42,7 +42,6 @@ C1 = [12,36,12,84,72,36,96,180,12,216,144,36,156,96,84,240,36]
 C2 = [1,7,8,18,14,30,20,42,30,56,42]
 C3 = [1,2,5,6,12,8,14,10,22,16]
 
-
 # ============ Model definitions ============
 def Y2(tau):
     q   = np.exp(2j*PI*tau)
@@ -54,11 +53,9 @@ def Y2(tau):
     for n,c in enumerate(C3,1): b3 += c*q**n
     return np.array([y1, -6*q13*b2, -18*q23*b3])
 
-
 def Y4(tau):
     a,b,c = Y2(tau)
     return np.array([a*a - b*c, c*c - a*b, b*b - a*c])
-
 
 def Y6(tau):
     a = Y2(tau); b = Y4(tau)
@@ -66,12 +63,10 @@ def Y6(tau):
                      (2*a[2]*b[2] - a[0]*b[1] - a[1]*b[0])/3,
                      (2*a[1]*b[1] - a[2]*b[0] - a[0]*b[2])/3])
 
-
 def theta_eps(tau):
     q4 = np.exp(1j * PI * tau / 2.0)
     return (1.0 + 2.0*q4**4 + 2.0*q4**16,
             2.0*q4 + 2.0*q4**9 + 2.0*q4**25)
-
 
 def build_M_nu_S4(tau, c1, c2, c3):
     th, ep = theta_eps(tau)
@@ -87,7 +82,6 @@ def build_M_nu_S4(tau, c1, c2, c3):
                     [Y3p[1], Y3p[0], Y3p[2]]], dtype=complex)
     return c1*M2 + c2*M3p + c3*np.eye(3)
 
-
 def obs_from_Mnu(M, Lam_nu_eV):
     w, U = np.linalg.eigh(M @ M.conj().T)
     m = np.sqrt(np.maximum(w, 1e-30)) * Lam_nu_eV
@@ -102,7 +96,6 @@ def obs_from_Mnu(M, Lam_nu_eV):
     dm31 = m[2]**2 - m[0]**2
     return th12, th13, th23, dm21, dm31
 
-
 def chi2_l_mnu(M, Lam_nu_eV):
     try:
         th12, th13, th23, dm21, dm31 = obs_from_Mnu(M, Lam_nu_eV)
@@ -115,14 +108,12 @@ def chi2_l_mnu(M, Lam_nu_eV):
     ch += ((dm31 - DM31_T)      / SIG_DM31)**2
     return ch
 
-
 def canonicalize_c(c):
     """Fix sign ambiguity c <-> -c (M -> -M leaves |M| and chi2 invariant)."""
     c = np.asarray(c)
     if np.sum(c) < 0:
         return -c
     return c
-
 
 # ============ Pre-scan diagnostic ============
 def de_fixed_tau(args):
@@ -140,7 +131,6 @@ def de_fixed_tau(args):
                     c=canonicalize_c(res.x).tolist())
     except Exception:
         return dict(Re=Re, Im=Im, seed=seed, chi2=1e10, c=[0.0, 0.0, 0.0])
-
 
 # ============ Stage 1: NM at fixed tau ============
 def nm_scan_point(args):
@@ -168,7 +158,6 @@ def nm_scan_point(args):
                     c=[0.0, 0.0, 0.0])
     return dict(Re=float(Re), Im=float(Im), chi2=float(best.fun),
                 c=canonicalize_c(best.x).tolist())
-
 
 # ============ Stage 2/3: joint DE over (tau, c) ============
 def joint_de(args):
@@ -198,7 +187,6 @@ def joint_de(args):
         return dict(Re=float(Re0), Im=float(Im0), chi2=1e10,
                     c=[0.0, 0.0, 0.0], seed=seed)
 
-
 def cluster_by_tau(items, dRe, dIm):
     clusters = []
     for it in sorted(items, key=lambda x: x['chi2']):
@@ -214,7 +202,6 @@ def cluster_by_tau(items, dRe, dIm):
         if not placed:
             clusters.append({'best': it, 'members': [it]})
     return clusters
-
 
 def collapse_verified_minima(verified, dRe=0.01, dIm=0.01):
     """Collapse verified minima that converged to the same point after Stage 3."""
@@ -232,7 +219,6 @@ def collapse_verified_minima(verified, dRe=0.01, dIm=0.01):
         if not is_dup:
             kept.append(v)
     return kept
-
 
 def main():
     n_cores = min(4, cpu_count())

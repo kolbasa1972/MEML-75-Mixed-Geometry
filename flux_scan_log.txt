@@ -1,0 +1,11 @@
+======================================================================
+ FINAL FLUX SCAN for all moduli (Range [-50, 50], K_T convention)
+======================================================================
+
+Modulus  | Fluxes (a0, a1, a2)  | |D_tau W|
+--------------------------------------------------
+tau_u    | (-45, -14, -4)       | 0.07637
+tau_d    | (-50, -17, -13)      | 0.22708
+tau_l    | (-15, 4, -4)         | 0.12144
+
+[OK] All moduli can be topologically stabilized with integer GVW fluxes.

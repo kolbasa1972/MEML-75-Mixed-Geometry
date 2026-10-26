@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-MEML 75 — CONSTRAINED GLOBAL SCAN of tau_l (v16.01)
+MEML 75 — CONSTRAINED GLOBAL SCAN of tau_l (v17.0)
+
+Note: In v17.0, the lepton modulus tau_l is interpreted as being
+topologically stabilized by GVW fluxes (-15, 4, -4). This scan
+demonstrates that the constrained minimum (c2 + c3 = 0) lies at
+tau_l = 1.584 + 1.552i, consistent with the manuscript.
 
 Question: is the constrained minimum really at
     tau_l = 1.584 + 1.552i, c = (-6.591, -17.400, +17.400)
     with chi2 = 0.3092 ?
-
-Or is there a better constrained minimum (c3 = -c2) at a different tau_l,
-which would reduce Delta_chi2 = chi2_constrained - chi2_unconstrained
-and make the model-selection argument stronger?
 
 Method: joint DE over (Re tau, Im tau, c1, c2) with c3 = -c2.
   Region: Re tau in [1.4, 1.8], Im tau in [1.4, 1.7]
@@ -18,9 +19,7 @@ Method: joint DE over (Re tau, Im tau, c1, c2) with c3 = -c2.
 Sign convention: the global sign ambiguity M -> -M leaves |M| and chi2
 invariant. We canonicalize every solution to sum(c) < 0, i.e. c1 < 0
 (with c3 = -c2), which matches the article (c1 = -6.591, c2 = -17.400,
-c3 = +17.400) and master_verification_log.txt.
-
-Runtime: ~3 seconds.
+c3 = +17.400).
 
 Usage:
     python meml75_constrained_global_scan.py
@@ -34,7 +33,7 @@ from multiprocessing import Pool, cpu_count
 # ============ Constants (Unified) ============
 PI        = np.pi
 v_EW      = 246.22
-M_6_REF   = 2.9646e16
+M_6_REF   = 2.964555e16
 y_nu      = 0.934
 LAMBDA_NU = (y_nu**2 * v_EW**2 / M_6_REF) * 1e9
 
@@ -47,7 +46,7 @@ C1 = [12,36,12,84,72,36,96,180,12,216,144,36,156,96,84,240,36]
 C2 = [1,7,8,18,14,30,20,42,30,56,42]
 C3 = [1,2,5,6,12,8,14,10,22,16]
 
-# Unconstrained baseline (from v2 scan, renamed for clarity)
+# Unconstrained baseline (renamed for clarity)
 TAU_L_UNCONSTR = 1.539847 + 1.551070j
 C_U_BASE       = np.array([6.371, 17.460, -17.199])
 CHI2_U         = 8.9413e-02
@@ -69,11 +68,9 @@ def Y2(tau):
     for n,c in enumerate(C3,1): b3 += c*q**n
     return np.array([y1, -6*q13*b2, -18*q23*b3])
 
-
 def Y4(tau):
     a,b,c = Y2(tau)
     return np.array([a*a - b*c, c*c - a*b, b*b - a*c])
-
 
 def Y6(tau):
     a = Y2(tau); b = Y4(tau)
@@ -81,12 +78,10 @@ def Y6(tau):
                      (2*a[2]*b[2] - a[0]*b[1] - a[1]*b[0])/3,
                      (2*a[1]*b[1] - a[2]*b[0] - a[0]*b[2])/3])
 
-
 def theta_eps(tau):
     q4 = np.exp(1j * PI * tau / 2.0)
     return (1.0 + 2.0*q4**4 + 2.0*q4**16,
             2.0*q4 + 2.0*q4**9 + 2.0*q4**25)
-
 
 def build_M_nu_S4(tau, c1, c2, c3):
     th, ep = theta_eps(tau)
@@ -102,7 +97,6 @@ def build_M_nu_S4(tau, c1, c2, c3):
                     [Y3p[1], Y3p[0], Y3p[2]]], dtype=complex)
     return c1*M2 + c2*M3p + c3*np.eye(3)
 
-
 def obs_from_Mnu(M, Lam_nu_eV):
     w, U = np.linalg.eigh(M @ M.conj().T)
     m = np.sqrt(np.maximum(w, 1e-30)) * Lam_nu_eV
@@ -117,7 +111,6 @@ def obs_from_Mnu(M, Lam_nu_eV):
     dm31 = m[2]**2 - m[0]**2
     return th12, th13, th23, dm21, dm31
 
-
 def chi2_l_mnu(M, Lam_nu_eV):
     try:
         th12, th13, th23, dm21, dm31 = obs_from_Mnu(M, Lam_nu_eV)
@@ -129,7 +122,6 @@ def chi2_l_mnu(M, Lam_nu_eV):
     ch += ((dm21 - DM21_T)      / SIG_DM21)**2
     ch += ((dm31 - DM31_T)      / SIG_DM31)**2
     return ch
-
 
 # ============ Constrained DE worker ============
 def de_constrained(args):
@@ -173,7 +165,7 @@ def de_constrained(args):
 def main():
     n_cores = min(4, cpu_count())
     print("=" * 74)
-    print("  MEML 75 — CONSTRAINED GLOBAL SCAN (v16.01)")
+    print("  MEML 75 — CONSTRAINED GLOBAL SCAN (v17.0)")
     print(f"  [cores = {n_cores}]")
     print(f"  Constraint: c3 = -c2  (c2 + c3 = 0)")
     print(f"  Region: Re tau in [1.4, 1.8], Im tau in [1.4, 1.7]")
@@ -297,7 +289,6 @@ def main():
 
   => Delta_chi2 = {delta_chi2:.4f} (not {delta_chi2_reported:.4f})
   => Update Section 8 with the new value.
-  => Also update c1, c2, c3 and tau_l in the text.
 """)
     else:
         print(f"""
@@ -310,8 +301,6 @@ def main():
   => Delta_AIC = {dAIC_scan:+.2f}
   => Delta_BIC(N=16) = {dBIC16_scan:+.2f}
   => Delta_BIC(N=5) = {dBIC5_scan:+.2f}
-
-  Update Section 8, abstract, and Section 14 with these numbers.
 """)
 
     print(f"[Total time] {time.time() - t_start:.1f} s")

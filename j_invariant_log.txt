@@ -1,0 +1,12 @@
+
+j-invariants of fitted moduli:
+
+tau_l (lepton)       : j = -15699.673945 + 4216.298423i
+     [--] Complex j-invariant (generic point).
+
+tau_u (up-quark)     : j = 1761022.616697 + 2698202.594238i
+     [--] Complex j-invariant (generic point).
+
+tau_d (down-quark)   : j = -10165.876112 + -11747.175785i
+     [--] Complex j-invariant (generic point).
+

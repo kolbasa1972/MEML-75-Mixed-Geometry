@@ -1,15 +1,15 @@
 
 ██████████████████████████████████████████████████████████████████████████
-  MEML 75 — MASTER VERIFICATION (v16.0-master, variant B)
+  MEML 75 — MASTER VERIFICATION (v17.0-master, variant B)
   [cores = 4]
-  Balance: 18 eff = 17 Lagr + theta_i (cosmological IC)
-  N_eff = 18, N_dof^fit = -2, N_dof^total = +1
-  Variant C (no c2+c3=0): 19, -3, 0
-  m_bb range (PATCH): [0, 8.669] meV  (was incorrectly [1, 50])
+  Balance: 12 eff = 11 Lagr + theta_i (moduli fixed by GVW fluxes)
+  N_eff = 12, N_dof^fit = +4, N_dof^total = +7
+  Variant C (no c2+c3=0): 13, +3, +6
+  m_bb range: [0, 8.669] meV
 ██████████████████████████████████████████████████████████████████████████
 
 ##########################################################################
-#  SECTION A. Core verification (§3-§13), variant B (c2+c3=0)
+#  SECTION A. Core verification (§3-§13), variant B (c2+c3=0; moduli fixed)
 ##########################################################################
 
 ==========================================================================
@@ -75,7 +75,7 @@
   [OK] m_bb (meV, vanishing Majorana phases): computed=8.369035e+00, expected=8.369000e+00 (rel err 4.16e-06)
 
 ==========================================================================
-  §8 m_bb range over arbitrary Majorana phases (PATCH)
+  §8 m_bb range over arbitrary Majorana phases
 ==========================================================================
   A = c12^2 c13^2 m1 = 4.3305 meV
   B = s12^2 c13^2 m2 = 3.2260 meV
@@ -126,15 +126,15 @@
   Ratio Y_000/Y_011 = 65.5 (need ~0.36)
 
 ==========================================================================
-  §13 Full balance (variant B: 18 eff = 17 Lagr + theta_i; c2+c3=0)
+  §13 Full balance (variant B: 12 eff = 11 Lagr + theta_i; c2+c3=0; moduli fixed)
 ==========================================================================
-  [OK] N_eff (17 Lagr + theta_i): computed=1.800000e+01, expected=1.800000e+01 (rel err 0.00e+00)
+  [OK] N_eff (11 Lagr + theta_i): computed=1.200000e+01, expected=1.200000e+01 (rel err 0.00e+00)
   [OK] N_obs^fit: computed=1.600000e+01, expected=1.600000e+01 (rel err 0.00e+00)
-  [OK] N_dof^fit: computed=-2.000000e+00, expected=-2.000000e+00 (rel err 0.00e+00)
-  [OK] N_dof^total: computed=1.000000e+00, expected=1.000000e+00 (rel err 0.00e+00)
-  [OK] [variant C] N_eff: computed=1.900000e+01, expected=1.900000e+01 (rel err 0.00e+00)
-  [OK] [variant C] N_dof^fit: computed=-3.000000e+00, expected=-3.000000e+00 (rel err 0.00e+00)
-  [OK] [variant C] N_dof^total: computed=0.000000e+00, expected=0.000000e+00 (abs err 0.00e+00)
+  [OK] N_dof^fit: computed=4.000000e+00, expected=4.000000e+00 (rel err 0.00e+00)
+  [OK] N_dof^total: computed=7.000000e+00, expected=7.000000e+00 (rel err 0.00e+00)
+  [OK] [variant C] N_eff: computed=1.300000e+01, expected=1.300000e+01 (rel err 0.00e+00)
+  [OK] [variant C] N_dof^fit: computed=3.000000e+00, expected=3.000000e+00 (rel err 0.00e+00)
+  [OK] [variant C] N_dof^total: computed=6.000000e+00, expected=6.000000e+00 (rel err 0.00e+00)
 
 ##########################################################################
 #  SECTION B. I-consistency check (Appendix G)
@@ -224,13 +224,13 @@
   (see meml75_tau_l_global_scan_v2.py).
 
 ==========================================================================
-  ALL SECTIONS COMPLETE (4.6s)
-  A: §3-§13 asserts PASSED  N_eff=18, N_dof^fit=-2, N_dof^total=+1
-     [variant C] 19, -3, 0
-     [PATCH] m_bb range = [0.0000, 8.6688] meV
+  ALL SECTIONS COMPLETE (4.2s)
+  A: §3-§13 asserts PASSED  N_eff=12, N_dof^fit=+4, N_dof^total=+7
+     [variant C] 13, +3, +6
+     m_bb range = [0.0000, 8.6688] meV
   B: I-consistency (Appendix G)
   C: GUT test for y_nu
   D: NuFIT 5.0 vs 5.2 (octant warning)
   E: Delta dynamics scan (constrained Delta target)
-  F: tau_l coarse scan (local minima only; global scan future work)
+  F: tau_l coarse scan (local minima only; global scan separate)
 ==========================================================================

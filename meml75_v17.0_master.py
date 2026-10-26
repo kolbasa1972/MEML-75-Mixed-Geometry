@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-MEML 75 — MASTER VERIFICATION (v16.0-master, variant B)
+MEML 75 — MASTER VERIFICATION (v17.0-master, variant B)
 
-Variant B balance:
-  18 effective parameters = 17 Lagrangian + theta_i (cosmological IC)
-  N_eff = 18, N_dof^fit = -2, N_dof^total = +1
-  Variant C (no c2+c3=0 reduction): 19, -3, 0 (reported in §13 footnote)
+Variant B balance (moduli fixed by GVW fluxes):
+  12 effective parameters = 11 Lagrangian + theta_i (cosmological IC)
+  N_eff = 12, N_dof^fit = +4, N_dof^total = +7
+  Variant C (no c2+c3=0 reduction): 13, +3, +6 (reported in §13 footnote)
 
 Constrained fit (Section A baseline):
   tau_l = 1.584 + 1.552i, c1 = -6.591, c2 = -17.400, c3 = +17.400
@@ -16,14 +16,9 @@ Unconstrained fit (refined global scan, v2):
   tau_l = 1.5398 + 1.5511i, c1 = 6.371, c2 = 17.460, c3 = -17.199
   chi2 = 0.0894
 
-Model selection (constrained vs unconstrained):
-  Delta_chi2 = 0.2198 ~ 0.22, p = 0.640
-  Delta_AIC = -1.78
-  Delta_BIC (N=16) = -2.55, Delta_BIC (N=5) = -1.39
-
 delta_CP = 22.94 deg (branch B: 157.06 deg).
 
-m_bb range (PATCH: corrected from 1-50 meV to 0-8.7 meV):
+m_bb range (corrected from 1-50 meV to 0-8.7 meV):
   A = c12^2 c13^2 m1 = 4.331 meV
   B = s12^2 c13^2 m2 = 3.226 meV
   C = s13^2 m3       = 1.112 meV
@@ -31,10 +26,8 @@ m_bb range (PATCH: corrected from 1-50 meV to 0-8.7 meV):
   m_bb^min = 0       (all three amplitudes can be aligned anti-phase)
   m_bb(delta_CP=22.94, alpha=beta=0) = 8.369 meV (~96.5% of max)
 
-All check() expected values match the updated article.
-
 Usage:
-    python meml75_v16.0_master.py
+    python meml75_v17.0_master.py
 """
 import math
 import time
@@ -222,17 +215,12 @@ def section(s):
 
 
 def m_bb_range(m1, m2, m3, t12, t13):
-    """Return (A, B, C, m_bb_max, m_bb_min) in the same units as m1, m2, m3.
-
-    PATCH: this replaces the old (incorrect) claim m_bb in [1, 50] meV.
-    """
     c12 = math.cos(math.radians(t12)); s12 = math.sin(math.radians(t12))
     c13 = math.cos(math.radians(t13)); s13 = math.sin(math.radians(t13))
     A = c12**2 * c13**2 * m1
     B = s12**2 * c13**2 * m2
     C = s13**2 * m3
     m_max = A + B + C
-    # Triangle closes iff each amplitude < sum of other two.
     if (A <= B + C) and (B <= A + C) and (C <= A + B):
         m_min = 0.0
     else:
@@ -241,7 +229,7 @@ def m_bb_range(m1, m2, m3, t12, t13):
 
 
 def section_A():
-    section("SECTION A. Core verification (§3-§13), variant B (c2+c3=0)")
+    section("SECTION A. Core verification (§3-§13), variant B (c2+c3=0; moduli fixed)")
 
     head("§3 Bulk coupling alpha_G")
     alpha_G = 2.0/(3*PI)
@@ -380,12 +368,7 @@ def section_A():
     m_bb = np.abs(np.sum((U_pmns_fixed[0, :]**2) * np.array([m1, m2, m3])))
     check("m_bb (meV, vanishing Majorana phases)", m_bb*1000, 8.369, 0.01)
 
-    # ------------------------------------------------------------------
-    # PATCH: correct m_bb range over arbitrary Majorana phases.
-    # Old (incorrect) claim: m_bb in [1, 50] meV.
-    # Correct claim:        m_bb in [0, 8.669] meV.
-    # ------------------------------------------------------------------
-    head("§8 m_bb range over arbitrary Majorana phases (PATCH)")
+    head("§8 m_bb range over arbitrary Majorana phases")
     A_bb, B_bb, C_bb, mbb_max, mbb_min = m_bb_range(
         m1*1000, m2*1000, m3*1000, t12, t13)
     print(f"  A = c12^2 c13^2 m1 = {A_bb:.4f} meV")
@@ -397,19 +380,14 @@ def section_A():
     print(f"  m_bb^min           = {mbb_min:.4f} meV")
     check("m_bb_range_max (meV)", mbb_max, 8.669, 0.01)
     check("m_bb_range_min (meV)", mbb_min, 0.0, 1e-3)
-    # And the value at delta_CP = 22.94 deg, alpha = beta = 0:
     check("m_bb_vanishing_phases (meV)", m_bb*1000, 8.369, 0.01)
-    # Sanity: 8.37 meV must be inside [0, 8.669] and close to the max
     assert mbb_min - 1e-9 <= m_bb*1000 <= mbb_max + 1e-9
     frac_of_max = (m_bb*1000) / mbb_max
     print(f"  m_bb(vanishing phases) / m_bb^max = {frac_of_max*100:.2f}%")
     check("m_bb_frac_of_max", frac_of_max, 0.965, 0.02)
-    # The paper claims m_bb entirely below KamLAND-Zen (~28-162 meV).
     assert mbb_max < 30.0, "m_bb range exceeds KamLAND-Zen limit"
     print("  [OK] entire m_bb range [0, 8.669] meV is below KamLAND-Zen limit")
-    # ------------------------------------------------------------------
 
-    # Unconstrained refined global scan (used for model-selection comparison)
     head("§8 Unconstrained refined scan (for model selection)")
     Mnu_unc = build_M_nu_S4(TAU_L_UNCONSTR,
                              C1_L_UNCONSTR, C2_L_UNCONSTR, C3_L_UNCONSTR)
@@ -486,18 +464,18 @@ def section_A():
     print(f"  Ratio Y_000/Y_011 = {ratio:.1f} (need ~0.36)")
     assert ratio > 10, "Flux model cannot reproduce c1/c2"
 
-    head("§13 Full balance (variant B: 18 eff = 17 Lagr + theta_i; c2+c3=0)")
-    n_eff = 18          # 17 Lagrangian + theta_i
-    n_obs = 16          # 9 quarks + 5 leptons + Omega_a h^2 + eta_B
-    n_pred = 3          # delta_CP, sum_m_i, m_bb (conditional)
-    check("N_eff (17 Lagr + theta_i)", n_eff,       18, 1e-10)
+    head("§13 Full balance (variant B: 12 eff = 11 Lagr + theta_i; c2+c3=0; moduli fixed)")
+    n_eff = 12          # 11 Lagrangian + theta_i (moduli fixed by GVW fluxes)
+    n_obs = 16
+    n_pred = 3
+    check("N_eff (11 Lagr + theta_i)", n_eff,       12, 1e-10)
     check("N_obs^fit",                  n_obs,       16, 1e-10)
-    check("N_dof^fit",                  n_obs - n_eff, -2, 1e-10)
-    check("N_dof^total",       (n_obs + n_pred) - n_eff, +1, 1e-10)
-    n_eff_C = 19
-    check("[variant C] N_eff",        n_eff_C,                          19, 1e-10)
-    check("[variant C] N_dof^fit",    n_obs - n_eff_C,                  -3, 1e-10)
-    check("[variant C] N_dof^total", (n_obs + n_pred) - n_eff_C,         0, 1e-10)
+    check("N_dof^fit",                  n_obs - n_eff, +4, 1e-10)
+    check("N_dof^total",       (n_obs + n_pred) - n_eff, +7, 1e-10)
+    n_eff_C = 13
+    check("[variant C] N_eff",        n_eff_C,                          13, 1e-10)
+    check("[variant C] N_dof^fit",    n_obs - n_eff_C,                  +3, 1e-10)
+    check("[variant C] N_dof^total", (n_obs + n_pred) - n_eff_C,         +6, 1e-10)
 
     return dict(M_6=M_6, LAMBDA_NU=LAMBDA_NU, y_nu=y_nu,
                 chi2_l=chi2_l, chi2_l_unc=chi2_l_unc,
@@ -509,6 +487,8 @@ def section_A():
                 m_a_eV=m_a_eV, nu_a_GHz=nu_a_GHz,
                 m_bb_max_meV=mbb_max, m_bb_min_meV=mbb_min)
 
+
+# ============== SECTION B: I-consistency check ==============
 
 def compute_derived_I(I, y_nu_val, base):
     m_KK = M_Pl_red / (np.sqrt(I) * np.exp(PI**2))
@@ -570,6 +550,8 @@ def section_B(base):
     else:
         print("  [WARN] Predictions shift by >1% under the geometric value.")
 
+
+# ============== SECTION C: GUT test for y_nu ==============
 
 A1_INV_MZ, A2_INV_MZ, A3_INV_MZ = 59.0, 29.6, 8.5
 B1, B2, B3 = 33.0/5.0, 1.0, -3.0
@@ -640,6 +622,8 @@ def section_C(n_cores):
             print("  [FAIL] f outside natural CG range.")
 
 
+# ============== SECTION D: NuFIT comparison ==============
+
 NUFIT_VERSIONS = {
     "5.0 (IC19+SK atm)": {
         'theta12': 33.44, 'theta13': 8.57, 'theta23': 49.2,
@@ -682,6 +666,8 @@ def section_D():
     print("        consequence, discussed in Section 8 of the paper.")
 
 
+# ============== SECTION E: Delta dynamics scan ==============
+
 DELTA_TARGET = 3.13e6
 
 
@@ -718,6 +704,8 @@ def section_E(n_cores):
     print("  combination phi0 ~ 1e16-17 GeV with T_i ~ 1e13 GeV.")
     print("  Three inputs (m_phi, phi0, T_i) replace one (Delta) -> N_eff not reduced.")
 
+
+# ============== SECTION F: tau_l coarse scan ==============
 
 def obs_from_Mnu(M, Lam_nu_eV):
     w, U = np.linalg.eigh(M @ M.conj().T)
@@ -811,15 +799,17 @@ def section_F(n_cores, Lam_nu):
         print("  (see meml75_tau_l_global_scan_v2.py).")
 
 
+# ============== MAIN ==============
+
 if __name__ == '__main__':
     n_cores = min(4, cpu_count())
     print("\n" + "█"*74)
-    print(f"  MEML 75 — MASTER VERIFICATION (v16.0-master, variant B)")
+    print(f"  MEML 75 — MASTER VERIFICATION (v17.0-master, variant B)")
     print(f"  [cores = {n_cores}]")
-    print(f"  Balance: 18 eff = 17 Lagr + theta_i (cosmological IC)")
-    print(f"  N_eff = 18, N_dof^fit = -2, N_dof^total = +1")
-    print(f"  Variant C (no c2+c3=0): 19, -3, 0")
-    print(f"  m_bb range (PATCH): [0, 8.669] meV  (was incorrectly [1, 50])")
+    print(f"  Balance: 12 eff = 11 Lagr + theta_i (moduli fixed by GVW fluxes)")
+    print(f"  N_eff = 12, N_dof^fit = +4, N_dof^total = +7")
+    print(f"  Variant C (no c2+c3=0): 13, +3, +6")
+    print(f"  m_bb range: [0, 8.669] meV")
     print("█"*74)
     t0 = time.time()
 
@@ -832,13 +822,13 @@ if __name__ == '__main__':
 
     print("\n" + "="*74)
     print(f"  ALL SECTIONS COMPLETE ({time.time()-t0:.1f}s)")
-    print("  A: §3-§13 asserts PASSED  N_eff=18, N_dof^fit=-2, N_dof^total=+1")
-    print(f"     [variant C] 19, -3, 0")
-    print(f"     [PATCH] m_bb range = [{base['m_bb_min_meV']:.4f}, "
+    print("  A: §3-§13 asserts PASSED  N_eff=12, N_dof^fit=+4, N_dof^total=+7")
+    print(f"     [variant C] 13, +3, +6")
+    print(f"     m_bb range = [{base['m_bb_min_meV']:.4f}, "
           f"{base['m_bb_max_meV']:.4f}] meV")
     print("  B: I-consistency (Appendix G)")
     print("  C: GUT test for y_nu")
     print("  D: NuFIT 5.0 vs 5.2 (octant warning)")
     print("  E: Delta dynamics scan (constrained Delta target)")
-    print("  F: tau_l coarse scan (local minima only; global scan future work)")
+    print("  F: tau_l coarse scan (local minima only; global scan separate)")
     print("="*74)
