@@ -9,7 +9,7 @@ version: 19.0
 date-released: 2026-10-27
 license: MIT
 repository-code: "https://github.com/kolbasa1972/MEML-75-Mixed-Geometry"
-url: "https://doi.org/10.5281/zenodo.23644888"
+url: "https://doi.org/10.5281/zenodo.23686782"
 identifiers:
   - type: doi
     value: "10.5281/zenodo.23644888"
