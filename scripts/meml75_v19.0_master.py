@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-MEML 75 — MASTER VERIFICATION (v17.0-master, variant B)
+MEML 75 — MASTER VERIFICATION (v19.0-master, variant B)
 
 Variant B balance (moduli fixed by GVW fluxes):
-  12 effective parameters = 11 Lagrangian + theta_i (cosmological IC)
-  N_eff = 12, N_dof^fit = +4, N_dof^total = +7
-  Variant C (no c2+c3=0 reduction): 13, +3, +6 (reported in §13 footnote)
+  11 effective parameters = 10 Lagrangian + theta_i (cosmological IC)
+  N_eff = 11, N_dof^fit = +5, N_dof^total = +8
+  Variant C (no c2+c3=0 reduction): 12, +4, +7 (reported in §13 footnote)
 
 Constrained fit (Section A baseline):
   tau_l = 1.584 + 1.552i, c1 = -6.591, c2 = -17.400, c3 = +17.400
@@ -27,7 +27,7 @@ m_bb range (corrected from 1-50 meV to 0-8.7 meV):
   m_bb(delta_CP=22.94, alpha=beta=0) = 8.369 meV (~96.5% of max)
 
 Usage:
-    python meml75_v17.0_master.py
+    python meml75_v19.0_master.py
 """
 import math
 import time
@@ -464,18 +464,18 @@ def section_A():
     print(f"  Ratio Y_000/Y_011 = {ratio:.1f} (need ~0.36)")
     assert ratio > 10, "Flux model cannot reproduce c1/c2"
 
-    head("§13 Full balance (variant B: 12 eff = 11 Lagr + theta_i; c2+c3=0; moduli fixed)")
-    n_eff = 12          # 11 Lagrangian + theta_i (moduli fixed by GVW fluxes)
+    head("§13 Full balance (variant B: 11 eff = 10 Lagr + theta_i; c2+c3=0; moduli fixed)")
+    n_eff = 11          # 10 Lagrangian + theta_i (moduli fixed by GVW fluxes)
     n_obs = 16
     n_pred = 3
-    check("N_eff (11 Lagr + theta_i)", n_eff,       12, 1e-10)
+    check("N_eff (10 Lagr + theta_i)", n_eff,       11, 1e-10)
     check("N_obs^fit",                  n_obs,       16, 1e-10)
-    check("N_dof^fit",                  n_obs - n_eff, +4, 1e-10)
-    check("N_dof^total",       (n_obs + n_pred) - n_eff, +7, 1e-10)
-    n_eff_C = 13
-    check("[variant C] N_eff",        n_eff_C,                          13, 1e-10)
-    check("[variant C] N_dof^fit",    n_obs - n_eff_C,                  +3, 1e-10)
-    check("[variant C] N_dof^total", (n_obs + n_pred) - n_eff_C,         +6, 1e-10)
+    check("N_dof^fit",                  n_obs - n_eff, +5, 1e-10)
+    check("N_dof^total",       (n_obs + n_pred) - n_eff, +8, 1e-10)
+    n_eff_C = 12
+    check("[variant C] N_eff",        n_eff_C,                          12, 1e-10)
+    check("[variant C] N_dof^fit",    n_obs - n_eff_C,                  +4, 1e-10)
+    check("[variant C] N_dof^total", (n_obs + n_pred) - n_eff_C,         +7, 1e-10)
 
     return dict(M_6=M_6, LAMBDA_NU=LAMBDA_NU, y_nu=y_nu,
                 chi2_l=chi2_l, chi2_l_unc=chi2_l_unc,
@@ -502,7 +502,7 @@ def compute_derived_I(I, y_nu_val, base):
     m_bb = base['m_bb_meV'] * scale
     BR = base['br'] * (base['M_6']/M_6)**2
     d_e = base['d_e'] * (base['M_6']/M_6)**2
-    eta_pre = base['eta_B'] * (y_nu_val/base['y_nu'])**2 * (M_6/base['M_6'])
+    eta_pre = base['eta_B'] * (M_6/base['M_6'])
     Delta = eta_pre / eta_obs
     return dict(I=I, M_6=M_6, y_nu=y_nu_val, sum_mi=sum_mi, m_bb=m_bb,
                 BR=BR, d_e=d_e, eta_pre=eta_pre, Delta=Delta)
@@ -804,11 +804,11 @@ def section_F(n_cores, Lam_nu):
 if __name__ == '__main__':
     n_cores = min(4, cpu_count())
     print("\n" + "█"*74)
-    print(f"  MEML 75 — MASTER VERIFICATION (v17.0-master, variant B)")
+    print(f"  MEML 75 — MASTER VERIFICATION (v19.0-master, variant B)")
     print(f"  [cores = {n_cores}]")
-    print(f"  Balance: 12 eff = 11 Lagr + theta_i (moduli fixed by GVW fluxes)")
-    print(f"  N_eff = 12, N_dof^fit = +4, N_dof^total = +7")
-    print(f"  Variant C (no c2+c3=0): 13, +3, +6")
+    print(f"  Balance: 11 eff = 10 Lagr + theta_i (moduli fixed by GVW fluxes)")
+    print(f"  N_eff = 11, N_dof^fit = +5, N_dof^total = +8")
+    print(f"  Variant C (no c2+c3=0): 12, +4, +7")
     print(f"  m_bb range: [0, 8.669] meV")
     print("█"*74)
     t0 = time.time()
@@ -822,8 +822,8 @@ if __name__ == '__main__':
 
     print("\n" + "="*74)
     print(f"  ALL SECTIONS COMPLETE ({time.time()-t0:.1f}s)")
-    print("  A: §3-§13 asserts PASSED  N_eff=12, N_dof^fit=+4, N_dof^total=+7")
-    print(f"     [variant C] 13, +3, +6")
+    print("  A: §3-§13 asserts PASSED  N_eff=11, N_dof^fit=+5, N_dof^total=+8")
+    print(f"     [variant C] 12, +4, +7")
     print(f"     m_bb range = [{base['m_bb_min_meV']:.4f}, "
           f"{base['m_bb_max_meV']:.4f}] meV")
     print("  B: I-consistency (Appendix G)")

@@ -1,0 +1,73 @@
+======================================================================
+ MEML 75 — Delta from inflation + moduli coupling
+======================================================================
+
+Target Delta = 3.13e+06
+
+Inflation (Starobinsky-like):
+  H_inf = 1.00e+13 GeV
+  T_RH  = 1.00e+09 GeV
+Modulus (KKLT):
+  m_phi = 8.63e+07 GeV
+  H_inf / m_phi = 1.16e+05
+
+Standard moduli displacement:
+  phi_0 (naive) = (H_inf/m_phi)^2 * M_Pl = 3.27e+28 GeV
+  phi_0 (capped) = min(..., M_Pl) = 2.44e+18 GeV
+
+Delta for various T_i (with phi_0 = 2.44e+18 GeV):
+  T_i [GeV]        Delta          vs 3.13e6   
+  ---------------------------------------------
+  1.00e+08         6.287e+17      20086247742660%
+  1.00e+09         6.287e+14      20086247643%
+  1.00e+10         6.287e+11      20086148%
+  1.00e+11         6.287e+08      19986%
+  1.00e+12         6.287e+05      80%
+
+Required phi_0 for Delta = 3.13e+06:
+  T_i [GeV]        phi_0 [GeV]        phi_0/M_Pl    
+  --------------------------------------------------
+  1.00e+09         1.7181e+14         0.0001        
+  1.00e+10         5.4331e+15         0.0022        
+  1.00e+11         1.7181e+17         0.0706        
+  1.00e+12         5.4331e+18         2.2313        
+
+======================================================================
+ TENSION / COMPARISON
+======================================================================
+
+If T_i ~ 10^10 GeV (typical for moduli decay), required phi_0:
+  phi_0_req ~ 5.43e+15 GeV = 2.231e-03 M_Pl
+
+Standard moduli displacement (capped at M_Pl):
+  phi_0_std ~ 2.44e+18 GeV = 1 M_Pl
+
+Ratio: phi_0_req / phi_0_std = 2.23e-03
+
+This means the standard moduli problem would give a MUCH LARGER
+Delta than needed (by a factor ~ 2.01e+05).
+
+To get the correct Delta, we need either:
+  (a) A much larger T_i (e.g., 10^13 GeV), or
+  (b) A much smaller phi_0 (e.g., by a factor 10^6).
+
+Neither is "natural" in the simplest moduli problem. This
+means Delta requires fine-tuning or a specific mechanism.
+
+======================================================================
+ VERDICT
+======================================================================
+
+The standard moduli problem (H_inf >> m_phi) gives
+phi_0 ~ M_Pl, which produces Delta >> 10^6 (over-dilution).
+
+To get the correct Delta = 3.13e6, we need phi_0 ~ 10^-3 M_Pl
+(if T_i ~ 10^10 GeV) or T_i ~ 10^13 GeV (if phi_0 ~ 0.01 M_Pl).
+
+Both require a specific mechanism beyond the simplest
+Starobinsky + KKLT setup. A UV completion is needed.
+
+CONCLUSION: Delta is NOT derivable from the simplest
+inflation + moduli model. It remains a free parameter
+in future work.
+

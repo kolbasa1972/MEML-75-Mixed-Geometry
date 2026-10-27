@@ -1,0 +1,79 @@
+======================================================================
+ MEML 75 — Delta from Starobinsky-like inflation (v19.0)
+======================================================================
+
+Target Delta = 3.13e+06
+
+Starobinsky inflation parameters:
+  N_efolds = 60
+  phi_0 / M_Pl = 5.3669
+  phi_0 = 1.3068e+19 GeV
+  m_inflaton = 7.3050e+12 GeV
+
+Modulus mass (from KKLT): m_phi = 8.6300e+07 GeV
+  T_RH = 1.3644e+09 GeV
+
+Delta for various phi_0 and T_i (Starobinsky T_RH):
+  phi_0 [GeV]      phi_0/M_Pl     T_i [GeV]        Delta        vs 3.13e6   
+  ---------------------------------------------------------------------------
+  2.44e+15         0.001          1.00e+10         4.608e+05    85%
+  2.44e+15         0.001          1.00e+12         4.608e-01    100%
+  2.44e+15         0.001          1.00e+13         4.608e-04    100%
+  2.44e+16         0.010          1.00e+10         4.608e+07    1372%
+  2.44e+16         0.010          1.00e+12         4.608e+01    100%
+  2.44e+16         0.010          1.00e+13         4.608e-02    100%
+  2.44e+17         0.100          1.00e+10         4.608e+09    147112%
+  2.44e+17         0.100          1.00e+12         4.608e+03    100%
+  2.44e+17         0.100          1.00e+13         4.608e+00    100%
+  1.22e+18         0.500          1.00e+10         1.152e+11    3680208%
+  1.22e+18         0.500          1.00e+12         1.152e+05    96%
+  1.22e+18         0.500          1.00e+13         1.152e+02    100%
+
+======================================================================
+ FINDING THE REQUIRED phi_0 FOR Delta = 3.13e6
+======================================================================
+  (with m_phi = 8.63e+07 GeV, T_RH = 1.36e+09 GeV)
+
+  T_i [GeV]        phi_0 [GeV]        phi_0 / M_Pl  
+  --------------------------------------------------
+  1.00e+08         6.3464e+12         0.0000        
+  1.00e+09         2.0069e+14         0.0001        
+  1.00e+10         6.3464e+15         0.0026        
+  1.00e+11         2.0069e+17         0.0824        
+  1.00e+12         6.3464e+18         2.6063        
+  1.00e+13         2.0069e+20         82.4191       
+
+======================================================================
+ VERDICT (NEGATIVE RESULT)
+======================================================================
+
+Starobinsky inflation predicts:
+  - Inflaton mass: m ~ 3e-6 M_Pl
+  - Reheating: T_RH ~ 1e9-1e10 GeV
+  - Inflaton displacement: phi_0 ~ 5 M_Pl (for N_efolds=60)
+
+If the modulus phi is displaced by the Hubble scale during inflation,
+its displacement is typically phi_0 ~ (H/m_phi)^2 M_Pl, which for
+H ~ 1e13 GeV and m_phi ~ 1e8 GeV gives phi_0 ~ 0.001 M_Pl.
+
+For Delta = 3.13e6, we need either:
+  (a) phi_0 ~ 1e12 GeV with T_i ~ 1e10 GeV, or
+  (b) phi_0 ~ 1e16-1e17 GeV with T_i ~ 1e13 GeV.
+
+Neither case follows from the simplest Starobinsky + KKLT setup: in
+case (a) phi_0 is too small for standard Hubble displacement, and in
+case (b) T_i is far above the Starobinsky reheating temperature.
+
+We therefore conclude that Delta is NOT derivable from the simplest
+inflation + moduli model. A full derivation would require specifying
+the coupling between the modulus and the inflaton (e.g., a non-minimal
+coupling, or a specific reheating scenario beyond the simplest setup).
+
+In the manuscript (Section 9), Delta is therefore treated as a
+phenomenological parameter, with an explicit acknowledgment of the
+isocurvature tension if the ALP constitutes the entirety of dark
+matter.
+
+======================================================================
+[OK] Delta confirmed NOT derivable from the simplest model.
+[OK] See Section 9 of the manuscript for the full discussion.

@@ -1,0 +1,113 @@
+======================================================================
+ MEML 75 — Quark coefficient reduction test (v19.0)
+======================================================================
+
+2 Im(tau_u) = 4.7704
+2 Im(tau_d) = 3.0821
+
+Quark coefficients (from master.py):
+  a_u = 1.000000e+00
+  b_u = 1.353303e+05
+  c_u = 7.328684e+02
+  a_1 = 4.577106e+00
+  a_2 = 9.465384e+03
+  b   = 2.568815e+01
+  c   = 4.177740e+01
+
+======================================================================
+ H1. Kähler normalization
+======================================================================
+  Observed b_u/a_u = 1.3533e+05
+  Observed c_u/a_u = 7.3287e+02
+  Observed log10(b_u/a_u) = 5.13
+  Observed log10(c_u/a_u) = 2.87
+
+  (2 Im tau_u)^n for n = -3 to +3:
+    n = -3: (2 Im tau)^n = 9.2119e-03
+    n = -2: (2 Im tau)^n = 4.3944e-02
+    n = -1: (2 Im tau)^n = 2.0963e-01
+    n = +0: (2 Im tau)^n = 1.0000e+00
+    n = +1: (2 Im tau)^n = 4.7704e+00
+    n = +2: (2 Im tau)^n = 2.2756e+01
+    n = +3: (2 Im tau)^n = 1.0856e+02
+
+  Required n for b_u/a_u: n = 7.56
+  Required n for c_u/a_u: n = 4.22
+  [--] H1 FAILS. The powers are not integers (n_b ~ 7.6, n_c ~ 4.2).
+
+======================================================================
+ H2. Discrete symmetry (b_u = b, c_u = c, etc.)
+======================================================================
+  Relation         Left           Right          Ratio      Deviation 
+  ------------------------------------------------------------------
+  b_u = b          1.3533e+05     2.5688e+01     5268.2024  526720.2%
+  c_u = c          7.3287e+02     4.1777e+01     17.5422    1654.2%
+  a_1 = a_2        4.5771e+00     9.4654e+03     0.0005     100.0%
+  b_u = c_u        1.3533e+05     7.3287e+02     184.6585   18365.8%
+  b = c            2.5688e+01     4.1777e+01     0.6149     38.5%
+
+  Verdict:
+    [--] b_u = b: ratio = 5268.202 (NOT close to 1)
+    [--] c_u = c: ratio = 17.542 (NOT close to 1)
+    [--] a_1 = a_2: ratio = 0.000 (NOT close to 1)
+    [--] b_u = c_u: ratio = 184.658 (NOT close to 1)
+    [--] b = c: ratio = 0.615 (NOT close to 1)
+
+======================================================================
+ H3. GUT relation (SU(5): m_b = m_tau at M_GUT)
+======================================================================
+  At M_GUT, m_b = m_tau (SU(5) relation)
+  m_b(M_GUT) ~ b * |Y^(2)_down(tau_d)|
+  m_tau(M_GUT) ~ c_2 * |Y_3'(tau_l)|
+  This would require b * |Y_d| = c_2 * |Y_l|
+
+  With fitted values: b = 25.69, c_2 = -17.400 (signed)
+  Signed ratio b/c_2 = -1.476
+
+  [--] H3 is NOT a simple relation (|ratio| approx 1.5, not 1)
+       The fit already includes m_b and m_tau, so this is a
+       cross-check, not an independent derivation.
+
+======================================================================
+ H4. 'Nice number' pattern (simple combinations of Im(tau))
+======================================================================
+  log10(2 Im tau_u) = 0.6786
+  log10(2 Im tau_d) = 0.4888
+
+  Coefficient    log10      = n*log10(2 Im tau_u)?      
+  ------------------------------------------------------
+  b_u            5.13       7.56       [--]
+  c_u            2.87       4.22       [--]
+  a_2            3.98       5.86       [OK]
+  b              1.41       2.08       [OK]
+  c              1.62       2.39       [--]
+
+  (If a coefficient matches n * log10(2 Im tau), it could be
+   derived from the Kähler normalization or modular weights.)
+
+======================================================================
+ SUMMARY (NEGATIVE RESULT)
+======================================================================
+
+H1 (Kähler normalization): FAILS.
+   The powers n_b ~ 7.56, n_c ~ 4.22 are not integers.
+
+H2 (Discrete symmetry): FAILS.
+   No pairwise equality holds. Smallest deviation is b/c ~ 0.61;
+   largest is b_u/a_1 ~ 3e4.
+
+H3 (GUT relation): NOT A PHYSICAL TEST (see disclaimer above).
+   The signed ratio b/c_2 = -1.476 is not close to 1.
+
+H4 (Nice number pattern): PARTIALLY WORKS but inconclusive.
+   Two coefficients (a_2, b) fall near integer multiples, but
+   c_u and c fall between multiples. This is consistent with
+   chance given the small number of tests.
+
+CONCLUSION:
+   None of the four hypotheses reduces the quark sector from
+   6 free coefficients. The quark coefficients are therefore
+   phenomenological, consistent with Section 14 (items 1-2) and the GUT cross-check H3 discussed in Section 7 of
+   the manuscript.
+
+======================================================================

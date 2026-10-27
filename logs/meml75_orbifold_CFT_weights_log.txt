@@ -1,0 +1,70 @@
+======================================================================
+ MEML 75 — Orbifold CFT with fractional modular weights (v19.0)
+======================================================================
+
+tau_l = (1.54+1.551j)
+2 Im(tau_l) = 3.1020
+Observed unconstrained c1/c2 = 0.3649
+Observed constrained   c1/c2 = 0.3788
+
+Modular weights of Z_4 twisted sectors:
+  Sector       Twist v    k_eff     
+  -----------------------------------
+  theta^0        0.00       0.0000    
+  theta^1        0.25       0.7500    
+  theta^2        0.50       1.0000    
+  theta^3        0.75       0.7500    
+
+|Y_2_eff|    = 0.706144
+||Y_3'_eff|| = 0.789265
+Bare ratio |Y_2|/||Y_3'|| = 0.894686
+
+Kähler-normalized ratio for various (k_2, k_3'):
+  k_2      k3p      Delta k        c1/c2       
+  --------------------------------------------------
+  [Integer weights]
+  2        4        2              2.7753      
+  4        4        0              0.8947      
+  2        6        4              8.6090      
+  4        6        2              2.7753      
+
+  [Fractional weights, Delta k = 3/4]
+  0        0.75     0.75           1.3678      
+  0.25     1.0      0.75           1.3678      
+  0.5      1.25     0.75           1.3678      
+  0.75     1.5      0.75           1.3678      
+  1.0      1.75     0.75           1.3678      
+
+======================================================================
+ PHYSICAL INTERPRETATION (NEGATIVE RESULT)
+======================================================================
+
+For the natural assignment (untwisted 2, theta-twisted 3'),
+the Kähler-normalized ratio is:
+
+    c1/c2 ≈ 1.3678
+
+Rounded to two decimal places, this is 1.37, consistent with the
+manuscript (Section 8 and Section 14, item 6).
+
+This is INCONSISTENT with:
+  - the unconstrained fit c1/c2 ≈ 0.365
+    (deviation 275%),
+  - the constrained   fit c1/c2 ≈ 0.379
+    (deviation 261%).
+
+We therefore report this as a NEGATIVE RESULT. The ratio c1/c2
+CANNOT be derived from the fractional modular weights of the
+Z_4 orbifold in the minimal setup.
+
+A viable derivation would require additional structure, such as:
+  - non-uniform wavefunction localization along the twisted sectors,
+  - a different Z_4 projection with Wilson lines,
+  - or a different S_4' representation assignment for the 3'.
+
+The observed c1/c2 in the paper is therefore treated as a free
+phenomenological parameter.
+
+======================================================================
+[OK] Sanity checks passed: negative result confirmed.
+[OK] c1/c2 ≈ 1.37 vs required ≈ 0.36 (both fits).

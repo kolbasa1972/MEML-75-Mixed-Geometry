@@ -1,0 +1,6 @@
+I (derived from N3*V3 - N4*V4) = 0.366025
+I (theoretical, (sqrt(3)-1)/2) = 0.366025
+Difference = 0.00e+00
+Alternative 1 ((N3*V3+N4*V4)/2) = 0.683013
+Alternative 2 (N4*V4)/(N3*V3) = 0.577350
+Alternative 3 (1/(1+N3*V3)) = 0.535898

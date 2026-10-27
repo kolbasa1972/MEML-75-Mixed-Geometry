@@ -1,0 +1,65 @@
+======================================================================
+ MEML 75 — Quark coefficients from fractional powers
+======================================================================
+
+2 Im(tau_u) = 4.7704
+2 Im(tau_d) = 3.0821
+
+Best fractional powers for quark coefficients:
+  Coeff    Value          Best p     Fraction   Error     
+  ------------------------------------------------------
+  b_u      1.3533e+05     7.5556     68/9       1.05%
+  c_u      7.3287e+02     4.2222     38/9       0.01%
+  a_2      9.4654e+03     5.8571     41/7       0.41%
+  b        2.5688e+01     2.0833     25/12      0.91%
+  c        4.1777e+01     2.4000     12/5       1.76%
+
+======================================================================
+ Specific fractional powers (small denominators)
+======================================================================
+  Fraction   (2 Im tau_u)^p     Closest coefficient  Error     
+  ------------------------------------------------------------
+  7/4        1.5398e+01         b                    40.1%
+  2/1        2.2756e+01         b                    11.4%
+  9/4        3.3631e+01         c                    19.5%
+  5/2        4.9702e+01         c                    19.0%
+  4/1        5.1785e+02         c_u                  29.3%
+  17/4        7.6532e+02         c_u                  4.4%
+  11/2        5.3955e+03         a_2                  43.0%
+  23/4        7.9738e+03         a_2                  15.8%
+  6/1        1.1784e+04         a_2                  24.5%
+  29/4        8.3079e+04         b_u                  38.6%
+  15/2        1.2278e+05         b_u                  9.3%
+  31/4        1.8146e+05         b_u                  34.1%
+
+======================================================================
+ Products of fractional powers
+======================================================================
+
+  log10(2 Im tau_u) = 0.6786
+  log10(3) = 0.4771
+
+  Coeff    log10      = p*log_base + q*log_3      
+  --------------------------------------------------
+  b_u      5.1314     +8.25*log_base -1*log_3  (2.4%)
+  c_u      2.8650     +3.50*log_base +1*log_3  (2.9%)
+  a_2      3.9761     +3.75*log_base +3*log_3  (0.0%)
+  b        1.4097     +3.50*log_base -2*log_3  (2.6%)
+  c        1.6209     +4.50*log_base -3*log_3  (0.3%)
+
+======================================================================
+ VERDICT (NEGATIVE RESULT)
+======================================================================
+
+The best-fit fractional powers have denominators (9, 9, 7, 12, 5),
+which are not in the set {1, 2, 4} allowed by orbifold CFT
+(untwisted: k = 1, 2, 3; twisted: k = 1/4, 1/2, 3/4).
+
+We conclude: the quark coefficients CANNOT be derived from
+fractional powers of (2 Im tau) with the modular weights of
+orbifold CFT. The quark sector remains with 6 free parameters.
+
+This is a NEGATIVE RESULT, consistent with Section 14, item 4
+of the manuscript.
+
+======================================================================

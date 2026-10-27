@@ -1,4 +1,3 @@
-
 j-invariants of fitted moduli:
 
 tau_l (lepton)       : j = -15699.673945 + 4216.298423i

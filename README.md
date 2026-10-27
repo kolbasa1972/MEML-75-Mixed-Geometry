@@ -1,46 +1,26 @@
-# MEML 75 — Mixed Geometry (v17.0)
+# Model MEML 75: Mixed Geometry (v19.0)
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23439547.svg)](https://doi.org/10.5281/zenodo.23439547)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23644888.svg)](https://doi.org/10.5281/zenodo.23644888)
 
-**MEML 75** is a phenomenological model that parametrizes the Standard Model fermion sector through the geometry of mixed six-dimensional orbifolds. Quarks are localized on a T²/ℤ₃ torus (employing A₄ modular forms), while leptons are localized on a T²/ℤ₄ torus (employing S₄' modular forms). 
+This repository contains the manuscript, Python verification scripts, and numerical logs for **Model MEML 75 (v19.0)**. 
 
-In version 17.0, we demonstrate that the three complex moduli (\(\tau_u, \tau_d, \tau_l\)) are not free parameters, but are topologically stabilized by discrete GVW fluxes. This reduces the number of effective free parameters from 18 to **12**, yielding \(N_{\rm dof}^{\rm fit} = +4\).
+The model parametrizes the fermion sector of the Standard Model through the geometry of mixed six-dimensional orbifolds (\(T^2/\mathbb{Z}_3 \times T^2/\mathbb{Z}_4\)), incorporating axion-like dark matter (ALP) and leptogenesis.
 
-## Key Predictions & Testable Consequences
+## 📂 Repository Structure
+*   `MEML_75_v19.0.tex` / `MEML_75_v19.0.pdf` — The final manuscript source and compiled PDF.
+*   `scripts/` — All 16 Python scripts used for numerical fits, global scans, and verification.
+*   `logs/` — Output logs corresponding to each script (proving the reproducibility of all results discussed in the paper).
+*   `figures/` — PDF figures used in the manuscript.
 
-While the model fits 16 observables, it makes several sharp, falsifiable predictions:
+## 🔬 Main Results
+*   **Parameter Balance:** The model has **11 effective fitted parameters** (10 Lagrangian parameters + the ALP misalignment angle \(\theta_i\)) fitting 16 observables, yielding \(N_{\rm dof}^{\rm fit} = +5\) (assuming the moduli are fixed by GVW fluxes).
+*   **ALP Dark Matter:** \(f_a = 1.9801 \times 10^{11}\) GeV, \(m_a = 28.407 \mu\)eV (frequency \(6.87\) GHz). Testable at future haloscope experiments (ADMX-EFR, HAYSTAC Phase III).
+*   **Leptogenesis:** \(\eta_B^{\rm pre} \approx 1.9 \times 10^{-3}\), resolved by entropy dilution \(\Delta \approx 3.13 \times 10^6\) (treated as a phenomenological parameter).
+*   **Testable Predictions:** \(\sum m_i \approx 0.068\) eV, \(m_{\beta\beta} < 8.7\) meV, and \(\delta_{CP} \approx 23^\circ\) or \(157^\circ\). The model also selects the upper octant of \(\theta_{23}\).
 
-- **Axion-like Dark Matter (ALP)**: The model predicts an ALP with \(f_a = 1.98 \times 10^{11}\) GeV, corresponding to a mass of **\(m_a = 28.4 \ \mu\)eV** and a frequency of **\(\nu_a = 6.87\) GHz**. This is testable at future high-frequency haloscope upgrades (ADMX-EFR, HAYSTAC Phase III).
-- **Neutrino Mass Sum**: \(\sum m_i \approx 0.068\) eV.
-- **Neutrinoless Double Beta Decay**: \(m_{\beta\beta} \approx 8.37\) meV (range \(0-8.7\) meV for arbitrary Majorana phases). This lies below the current KamLAND-Zen limit and is a prime target for nEXO and LEGEND-1000.
-- **CP Violation**: The Dirac CP phase is predicted to be \(\delta_{CP} \approx 23^\circ\) or \(157^\circ\).
-- **Atmospheric Octant**: The model selects the upper octant for \(\theta_{23}\) (\(\approx 49.04^\circ\)), a definitive testable consequence for DUNE and Hyper-Kamiokande.
+## ⚙️ Reproducibility
 
-## Files
-
-| File | Purpose |
-|---|---|
-| `MEML_Article/` | Folder containing the manuscript source (`MEML_75_v17.0.tex`), PDF, and `figures/`. |
-| `meml75_v17.0_master.py` | Main verification script (sections A–F) |
-| `constraint_test_extended2.py` | Test of 7 residual symmetries and stress test |
-| `meml75_tau_l_global_scan_v2.py` | Unconstrained global scan for the lepton modulus |
-| `meml75_constrained_global_scan.py` | Constrained global scan (\(c_2 + c_3 = 0\)) |
-| `meml75_flux_scan_final.py` | GVW flux scan for topological stabilization |
-| `meml75_j_invariant.py` | \(j\)-invariant check for algebraic points |
-| `meml75_flux_conventions.py` | Kähler convention checks for fluxes |
-| `master_verification_log.txt` | Output of `master.py` (`ALL SECTIONS COMPLETE`) |
-| `constraint_test_log.txt` | Output of `constraint_test_extended2.py` (`1 PASS, 6 FAIL`) |
-| `global_scan_log.txt` | Output of `tau_l_global_scan_v2.py` (`UNIQUE minimum`) |
-| `constrained_scan_log.txt` | Output of `constrained_global_scan.py` (`c = (-6.59, -17.40, +17.40)`) |
-| `flux_scan_log.txt` | Output of `flux_scan_final.py` (`|D_tau W| < 0.25`) |
-| `j_invariant_log.txt` | Output of `j_invariant.py` (generic points) |
-| `flux_conventions_log.txt` | Output of `flux_conventions.py` |
-
-## Reproducing the Results
-
-Ensure you have the required dependencies installed:
+To reproduce the main results and verify the assertions in the manuscript, install the required dependencies:
 
 ```bash
 pip install -r requirements.txt

@@ -1,0 +1,74 @@
+======================================================================
+ MEML 75 — KKLT derivation of Delta
+======================================================================
+
+Target Delta = 3.13e+06
+
+KKLT modulus mass for various (N, |W0|):
+N      |W0|       x=a*sigma0   m_3/2 [GeV]      m_phi [GeV]     
+----------------------------------------------------------------------
+5      1e-04      11.36        2.44e+14         3.19e+15        
+5      1e-08      21.13        2.44e+10         5.94e+11        
+5      1e-12      30.70        2.44e+06         8.63e+07        
+5      1e-14      35.44        2.44e+04         9.96e+05        
+10     1e-04      11.36        2.44e+14         3.19e+15        
+10     1e-08      21.13        2.44e+10         5.94e+11        
+10     1e-12      30.70        2.44e+06         8.63e+07        
+10     1e-14      35.44        2.44e+04         9.96e+05        
+50     1e-04      11.36        2.44e+14         3.19e+15        
+50     1e-08      21.13        2.44e+10         5.94e+11        
+50     1e-12      30.70        2.44e+06         8.63e+07        
+50     1e-14      35.44        2.44e+04         9.96e+05        
+100    1e-04      11.36        2.44e+14         3.19e+15        
+100    1e-08      21.13        2.44e+10         5.94e+11        
+100    1e-12      30.70        2.44e+06         8.63e+07        
+100    1e-14      35.44        2.44e+04         9.96e+05        
+
+======================================================================
+ Required phi_0 (given T_i) for Delta = 3.13e6
+======================================================================
+m_phi [GeV]     T_i [GeV]       phi_0 [GeV]    
+--------------------------------------------------
+3.16e+06        1.00e+10        2.92e+12       
+3.16e+06        1.00e+13        9.24e+16       
+1.00e+09        1.00e+10        6.93e+11       
+1.00e+09        1.00e+13        2.19e+16       
+1.00e+10        1.00e+10        3.90e+11       
+1.00e+10        1.00e+13        1.23e+16       
+
+======================================================================
+ Required T_i (given phi_0) for Delta = 3.13e6
+======================================================================
+m_phi [GeV]     phi_0 [GeV]     T_i [GeV]      
+--------------------------------------------------
+3.16e+06        1.00e+12        4.89e+09       
+3.16e+06        1.00e+16        2.27e+12       
+3.16e+06        1.00e+17        1.05e+13       
+1.00e+09        1.00e+12        1.28e+10       
+1.00e+09        1.00e+16        5.93e+12       
+1.00e+09        1.00e+17        2.75e+13       
+
+======================================================================
+ VERDICT
+======================================================================
+
+KKLT fixes m_phi (modulus mass) but NOT phi_0 (initial amplitude)
+or T_i (initial temperature). These depend on the inflationary
+sector and reheating history.
+
+Typical KKLT masses for standard fluxes:
+  m_phi ~ 10^6 - 10^10 GeV.
+
+To get Delta ~ 3.13e6, one needs either:
+  (a) phi_0 ~ 10^12 GeV with T_i ~ 10^10 GeV (requires tuning phi_0),
+  or
+  (b) phi_0 ~ 10^16-17 GeV with T_i ~ 10^13 GeV (large displacement).
+
+Both are cosmologically allowed but require specifying the
+inflationary sector. A full derivation of Delta requires a
+model of inflation where phi_0 is naturally displaced by the
+required amount and T_i is set by the reheating dynamics.
+
+This is beyond the scope of the current paper and is a natural
+target for v19.0.
+

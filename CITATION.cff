@@ -1,10 +1,32 @@
 cff-version: 1.2.0
-message: "If you use this model or code, please cite it as below."
+message: "If you use this software or the results of this model in your research, please cite it as below."
+title: "Model MEML 75: Quark and lepton mass matrices from mixed T2/Z3 x T2/Z4 geometry with axion-like dark matter and leptogenesis"
+abstract: "We present model MEML 75, which parametrizes the fermion sector of the Standard Model through the geometry of mixed six-dimensional orbifolds. The model has 11 effective fitted parameters (10 Lagrangian parameters plus the ALP misalignment angle) fitting 16 observables, yielding N_dof^fit = +5. Main testable consequences include axion-like dark matter at f_a = 1.9801e11 GeV (m_a = 28.407 ueV), and three conditional predictions: sum(m_i) = 0.068 eV, m_betabeta = 8.37 meV, and delta_CP = 23 degrees or 157 degrees."
 authors:
   - family-names: "Yurov"
     given-names: "D. V."
-title: "Model MEML 75 (v16.0): Quark and lepton mass matrices from mixed geometry with axion-like dark matter and leptogenesis"
-version: 16.0
-doi: 10.5281/zenodo.23638606
-date-released: 2026-10-25
+version: 19.0
+date-released: 2026-10-27
 license: MIT
+repository-code: "https://github.com/kolbasa1972/MEML-75-Mixed-Geometry"
+url: "https://doi.org/10.5281/zenodo.23644888"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.23644888"
+    description: "Zenodo archive of the manuscript and code (v19.0)"
+keywords:
+  - particle physics
+  - modular forms
+  - orbifold compactification
+  - neutrino masses
+  - axion-like dark matter
+  - leptogenesis
+  - flavor physics
+references:
+  - type: article
+    title: "Model MEML 75: Quark and lepton mass matrices from mixed orbifold geometry with axion-like dark matter and leptogenesis"
+    authors:
+      - family-names: "Yurov"
+        given-names: "D. V."
+    year: 2026
+    notes: "Manuscript submitted for publication"

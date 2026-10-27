@@ -1,0 +1,15 @@
+======================================================================
+ MEML 75 — Anomaly coefficients
+======================================================================
+
+DFSZ (E/N = 8/3):
+  g_a_gamma_gamma = 4.3795e-15 GeV^-1
+
+KSVZ (E/N = 0):
+  g_a_gamma_gamma = -1.1262e-14 GeV^-1
+
+Hypothesis: E/N = 8/3 (DFSZ-like), because the ALP couples
+to all SM fermions via the modular structure.
+Predicted g_agg = 4.3795e-15 GeV^-1
+
+This is the value to use in the article.
