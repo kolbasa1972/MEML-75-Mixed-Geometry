@@ -12,4 +12,7 @@ abstract: >-
   and 5 postulates. It yields testable consequences for axion-like dark matter (f_a = 1.98e11 GeV, m_a = 28.4 ueV), 
   neutrino masses, and leptogenesis (conditional on a curvaton). We honestly report twelve documented negative results, 
   including the failure of pure GVW to stabilize moduli and the failure to structurally derive c_d, c_1, c_2 from modular forms. 
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.24227241"
   The model makes zero independent predictions; all observables are fitted or postdicted.
