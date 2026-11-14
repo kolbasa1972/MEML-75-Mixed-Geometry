@@ -1,3 +1,7 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24227241.svg)](https://doi.org/10.5281/zenodo.24227241)
+[![GitHub release](https://img.shields.io/github/v/release/kolbasa1972/MEML-75-Mixed-Geometry)](https://github.com/kolbasa1972/MEML-75-Mixed-Geometry/releases)
+[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 # MEML 75 (v24.5.5) — Collected Files
 
 This directory contains the complete, reproducible bundle for the
