@@ -1,0 +1,16 @@
+======================================================================
+ MEML 75 — Magnetized Overlap Test v2 (Strict Selection Rule)
+======================================================================
+Fluxes: M_Q=3, M_u=-4, M_H=1
+Physical range: I in [0,2], J in [0,3], K in [0,0]
+Selection rule: I/|M_Q| + J/|M_u| + K/|M_H| in Z
+
+Allowed non-zero couplings:
+  Y_000 = 1.0006e+00
+
+======================================================================
+ VERDICT
+======================================================================
+ [OK] Only Y_000 survives. Mass matrix is rank-1.
+ No hierarchy can be generated from these fluxes.
+======================================================================

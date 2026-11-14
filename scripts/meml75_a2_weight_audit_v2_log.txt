@@ -1,0 +1,39 @@
+
+=== WEIGHT AUDIT: factor |Y3^(4)/Y2^(4)| ===
+ Y6 convention: honest_pure2 (Y6[0] is same in both conventions,
+  so numerical results of the audit are unchanged from v1)
+
+
+base_a2 = |Y2[1]/Y6[0]| = 3.590602e-01   (passport 3.590602e-01)
+  modular weight: 2 - 6 = -4
+
+y14      = |q_d|^(1/4)      = 8.886161e-02   (passport 8.886161e-02)
+y14^-4   = exp(2*pi*Im tau)  = 1.603774e+04   (passport 1.6038e+04)
+  modular weight: NON-MODULAR
+  best real n for (2*Im tau)^n = 8.602   (passport 8.60)
+  integer? NO
+
+|Y3^(4)/Y2^(4)| = 0.357816   (passport 0.357816)
+  modular weight: 4 - 4 = 0
+
+candidate = base_a2 * y14^-4 * factor = 2060.5   (passport 2060.5)
+
+=== FAMILY 0.358: four weight-0 ratios ===
+ratio                    value     base*factor    passport
+|Y3^(4)/Y2^(4)|       0.357816          2060.5      2060.5
+|Y4_2/Y6_1|           0.358054          2061.9      2061.9
+|Y4_3/Y2_2|           0.356814          2054.7      2054.7
+|Y2_2/Y6_1|           0.359060          2067.7      2067.7
+
+sensitivity to dtau = 0.01: 0.0172 %   (passport 0.02%)
+
+=== TOTAL WEIGHT ===
+  base_a2            : -4
+  y14^-4             : non-modular
+  |Y3^(4)/Y2^(4)|    :  0
+  TOTAL              : -4  (does not change from base_a2)
+
+verdict: structural motivation ABSENT — weight 0, factor not unique,
+         y14^-4 is not a Kaehler power (best real n = 8.60).
+
+log written to: meml75_a2_weight_audit_v2_log.txt

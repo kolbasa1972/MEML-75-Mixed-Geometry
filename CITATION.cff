@@ -1,32 +1,15 @@
 cff-version: 1.2.0
-message: "If you use this software or the results of this model in your research, please cite it as below."
-title: "Model MEML 75: Quark and lepton mass matrices from mixed T2/Z3 x T2/Z4 geometry with axion-like dark matter and leptogenesis"
-abstract: "We present model MEML 75, which parametrizes the fermion sector of the Standard Model through the geometry of mixed six-dimensional orbifolds. The model has 11 effective fitted parameters (10 Lagrangian parameters plus the ALP misalignment angle) fitting 16 observables, yielding N_dof^fit = +5. Main testable consequences include axion-like dark matter at f_a = 1.9801e11 GeV (m_a = 28.407 ueV), and three conditional predictions: sum(m_i) = 0.068 eV, m_betabeta = 8.37 meV, and delta_CP = 23 degrees or 157 degrees."
+message: "If you use this manuscript, model, or the accompanying code, please cite it as below."
 authors:
   - family-names: "Yurov"
     given-names: "D. V."
-version: 19.0
-date-released: 2026-10-27
-license: MIT
-repository-code: "https://github.com/kolbasa1972/MEML-75-Mixed-Geometry"
-url: "https://doi.org/10.5281/zenodo.23686782"
-identifiers:
-  - type: doi
-    value: "10.5281/zenodo.23644888"
-    description: "Zenodo archive of the manuscript and code (v19.0)"
-keywords:
-  - particle physics
-  - modular forms
-  - orbifold compactification
-  - neutrino masses
-  - axion-like dark matter
-  - leptogenesis
-  - flavor physics
-references:
-  - type: article
-    title: "Model MEML 75: Quark and lepton mass matrices from mixed orbifold geometry with axion-like dark matter and leptogenesis"
-    authors:
-      - family-names: "Yurov"
-        given-names: "D. V."
-    year: 2026
-    notes: "Manuscript submitted for publication"
+title: "Model MEML 75: Quark and lepton mass matrices from mixed T^2/Z_3 x T^2/Z_4 geometry with axion-like dark matter and leptogenesis"
+version: 24.5.5
+date-released: "2026-11-14"
+abstract: >-
+  Model MEML 75 is a phenomenological construction that parametrizes the fermion sector of the Standard Model 
+  through mixed six-dimensional orbifolds. The model has 13 fitted parameters for 16 observables (N_dof = +3 or +4) 
+  and 5 postulates. It yields testable consequences for axion-like dark matter (f_a = 1.98e11 GeV, m_a = 28.4 ueV), 
+  neutrino masses, and leptogenesis (conditional on a curvaton). We honestly report twelve documented negative results, 
+  including the failure of pure GVW to stabilize moduli and the failure to structurally derive c_d, c_1, c_2 from modular forms. 
+  The model makes zero independent predictions; all observables are fitted or postdicted.

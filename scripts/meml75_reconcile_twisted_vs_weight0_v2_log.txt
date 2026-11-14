@@ -1,0 +1,73 @@
+==============================================================================
+ RECONCILE: §7.3 (twisted forms) vs weight audit R3.4
+ Y6 convention = honest_pure2 (matches passport c_u = 9.72e2)
+==============================================================================
+
+--- Base A4 quantities (fitted tau) ---
+  base_bu = |Y4_2/Y2_1| = 4.061017e-02   (weight +2)
+  base_cu = |Y6_2/Y2_1| = 2.039782e-06   (weight +4)
+  base_a2 = |Y2_2/Y6_1| = 3.590602e-01   (weight -4)
+  base_b  = |Y2_3/Y6_1| = 4.271438e-02   (weight -4)
+  y13 = 6.768298e-03   y14 = 8.886161e-02
+  y13^-3 = 3.225237e+06   y13^-4 = 4.765211e+08
+  y14^-3 = 1.425140e+03   y14^-4 = 1.603774e+04
+
+--- Pure integer powers (no weight-0 factor) ---
+  coef   small    best n     prediction       target       miss
+  --------------------------------------------------------------
+  bu     y13          -3     1.3098e+05   1.3500e+05       3.0%
+  cu     y13          -4     9.7200e+02   7.3300e+02      32.6%
+  a2     y14          -3     5.1171e+02   2.0670e+03      75.2%
+  b      y14          -2     5.4094e+00   5.6300e+00       3.9%
+
+--- Set (-3,-4,-3,-2) from §7.3 ---
+  bu/a_u = base_bu*y13^-3 = 1.3098e+05   target 1.3500e+05   miss 3.0%
+  cu/a_u = base_cu*y13^-4 = 9.7200e+02   target 7.3300e+02   miss 32.6%
+  a2/a1  = base_a2*y14^-3 = 5.1171e+02   target 2.0670e+03   miss 75.2%
+  b/a1   = base_b *y14^-2 = 5.4094e+00   target 5.6300e+00   miss 3.9%
+
+--- Set (-3,-4,-4,-2): pure powers ---
+  a2/a1  = base_a2*y14^-4 = 5.7585e+03   target 2.0670e+03   miss 178.6%
+
+--- Set (-3,-4,-4,-2) x weight-0 factor ---
+  |Y3^(4)/Y2^(4)| = 0.357816   (weight 0)
+  a2/a1 = 5758.5 * 0.357816 = 2060.5   target 2067   miss 0.31%
+
+--- Non-uniqueness of weight-0 factor ---
+  weight-0 ratio          value      a2/a1     miss
+  --------------------------------------------------
+  |Y3^(4)/Y2^(4)|      0.357816     2060.5    0.31%
+  |Y4_2/Y6_1|          0.358054     2061.9    0.25%
+  |Y4_3/Y2_2|          0.356814     2054.7    0.59%
+  |Y2_2/Y6_1|          0.359060     2067.7    0.03%
+  Spread in a2/a1 predictions: 12.9 (0.6%)
+
+--- Comparison with passport §2.5.3 'Числа' ---
+  coef     passport     our pure    our +factor    target(fit)
+  ------------------------------------------------------------
+  bu       1.31e+05     1.31e+05       1.31e+05       1.35e+05
+  cu       9.72e+02     9.72e+02       9.72e+02       7.33e+02
+  a2       2.15e+03     5.12e+02       2.06e+03       2.07e+03
+  b        5.41e+00     5.41e+00       5.41e+00       5.63e+00
+  NOTE: passport a2 ~ 2.15e3 is closest to -4 with weight-0
+        factor (2.06e3); pure -3 gives 512, pure -4 gives 5758.
+
+==============================================================================
+ VERDICT
+==============================================================================
+  bu, cu, b: pure integer powers y13^-3, y13^-4, y14^-2 work
+    (miss 3.0%, 32.6%, 3.9%).
+  a2: NO pure power works:
+    y14^-3 gives 512 (target 2067, miss 75%)
+    y14^-4 gives 5759 (target 2067, miss 179%)
+  a2 with weight-0 factor 0.358: 2060 (miss 0.3%)
+  The factor is NOT unique: 4 ratios give 2055..2068.
+
+  => Claim 'unique integer-power fit (-3,-4,-3,-2)' is INCORRECT.
+  => §7.3, §14 п.2 and abstract must be rewritten.
+  => Correct statement:
+       'Three of four coefficients (bu, cu, b) are reproduced by
+        pure integer powers y13^-3, y13^-4, y14^-2 of twisted
+        modular forms. The fourth (a2) requires an additional
+        weight-0 ratio |Y3^(4)/Y2^(4)| ~ 0.358, which is NOT
+        unique: four weight-0 ratios give a2/a1 in [2055, 2068].'

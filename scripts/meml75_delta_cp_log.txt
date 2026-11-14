@@ -1,0 +1,49 @@
+==========================================================================
+ meml75_delta_cp.py — Dirac CP phase from the lepton fit
+==========================================================================
+
+--- CONSTRAINED (c2+c3=0), used in paper ---
+  theta_12 = 33.64 deg
+  theta_13 = 8.53 deg
+  theta_23 = 49.05 deg
+  J        = +1.290828e-02
+  denom    = +3.311805e-02
+  sin(delta_CP) = +0.3898
+  delta_CP = 22.9 deg  or  157.1 deg
+  |delta_CP| in [0,180]: min(22.9, 157.1) = 22.9 deg
+
+--- UNCONSTRAINED (cross-check) ---
+  theta_12 = 33.50 deg
+  theta_13 = 8.53 deg
+  theta_23 = 49.00 deg
+  J        = +1.557792e-02
+  denom    = +3.307167e-02
+  sin(delta_CP) = +0.4710
+  delta_CP = 28.1 deg  or  151.9 deg
+  |delta_CP| in [0,180]: min(28.1, 151.9) = 28.1 deg
+
+==========================================================================
+ VERDICT vs PAPER CLAIM ('delta_CP = 23 or 157 deg')
+==========================================================================
+  Paper claim: delta_CP ~ 23 or 157 deg  =>  |sin| ~ 0.3907
+  (Note: sin(23) = sin(157), so |sin| alone is ambiguous)
+
+  Constrained: sin(delta) = +0.3898, delta = 22.9 or 157.1 deg
+  [OK] match to paper claim (tolerance 0.05 in |sin|)
+
+==========================================================================
+ NOTE on Majorana phases
+==========================================================================
+
+  The model gives M_nu = c1 M2 + c2 M3' + c3 I with complex c_i.
+  Diagonalizing M_nu M_nu^dagger gives U (PMNS-like) and m_i.
+  The Dirac phase delta_CP is extracted from the Jarlskog invariant J.
+  Majorana phases alpha, beta do NOT affect oscillations and do not
+  enter J; they are not fixed by the model as stated. The value of
+  delta_CP is a well-defined prediction (given c_i and tau_l); the
+  Majorana phases are not.
+
+  If the user wants to claim alpha, beta as predictions, additional
+  structure (e.g., specific phases from the orbifold) is required.
+
+==========================================================================

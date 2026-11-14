@@ -1,0 +1,13 @@
+======================================================================
+ MEML 75 — Curvaton Dilution (Corrected exponent 3/4)
+======================================================================
+Target Delta: 3.13e+06
+Required energy ratio (rho_sigma/rho_rad): 4.58e+08
+Fixed Curvaton mass m_sigma: 1.00e+06 GeV
+CORRECTED initial amplitude sigma_0: 1.79e+17 GeV
+sigma_0 / M_Pl: 0.0736
+
+Original ALP isocurvature limit on H_inf: 3.0e11 GeV
+Relaxed ALP isocurvature limit on H_inf: 5.31e+14 GeV
+ [OK] Starobinsky inflation (H_inf ~ 10^13 GeV) is fully allowed.
+======================================================================

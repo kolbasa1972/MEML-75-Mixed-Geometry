@@ -1,26 +1,38 @@
-# Model MEML 75: Mixed Geometry (v19.0)
+# MEML 75 (v24.5.5) — Collected Files
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23686782.svg)](https://doi.org/10.5281/zenodo.23686782)
+This directory contains the complete, reproducible bundle for the
+manuscript **Model MEML 75 (v24.5.5)**.
 
-This repository contains the manuscript, Python verification scripts, and numerical logs for **Model MEML 75 (v19.0)**. 
+## Directory Structure
 
-The model parametrizes the fermion sector of the Standard Model through the geometry of mixed six-dimensional orbifolds (\(T^2/\mathbb{Z}_3 \times T^2/\mathbb{Z}_4\)), incorporating axion-like dark matter (ALP) and leptogenesis.
+- `paper/` — LaTeX source and compiled PDF.
+  - `MEML 75 v24.5.5.tex` (main article, includes 3 figures)
+  - `MEML 75 v24.5.5.pdf`
+- `figures/` — PDF and PNG plots used in the paper.
+  - `fig_modular_tau_space.pdf/png` (Figure 1, Section 2)
+  - `fig_alp_parameter_space.pdf/png` (Figure 2, Section 6)
+  - `fig_theta23_delta.pdf/png` (Figure 3, Section 8)
+- `scripts/` — Python scripts for all numerical checks.
+  - `make_fig_*.py`, `lot_theta23_delta.py` (generate the figures)
+  - `meml75_logutil.py` (shared `safe_log` utility)
+  - **Master verifier:** `meml75_v24.5.1_verification.py`
+  - **Audit (JSON-based):** `meml75_v24.5_audit.py`
+  - **Quark sector:** `meml75_honest_pure2.py`, `meml75_close_tails.py`, etc.
+  - **Lepton sector:** `meml75_tau_l_global_scan_v2.py`, `meml75_constrained_global_scan.py`, etc.
+  - **GVW & KKLT:** `meml75_flux_scan_cs.py`, `meml75_full_hessian.py`, `meml75_kklt_scan.py`, etc.
+  - **ALP / WGC:** `meml75_wgc_check.py`
+  - **Leptogenesis / curvaton:** `meml75_leptogenesis.py`, `meml75_curvaton_dilution.py`, etc.
+  - **Negative results:** `meml75_derive_cd.py`, `meml75_derive_c1c2.py`, etc.
+- `scripts/*_log.txt` — text logs produced by each script.
+- `scripts/*.json` — machine-readable results.
 
-## 📂 Repository Structure
-*   `MEML_75_v19.0.tex` / `MEML_75_v19.0.pdf` — The final manuscript source and compiled PDF.
-*   `scripts/` — All 16 Python scripts used for numerical fits, global scans, and verification.
-*   `logs/` — Output logs corresponding to each script (proving the reproducibility of all results discussed in the paper).
-*   `figures/` — PDF figures used in the manuscript.
+> **Note on removed files.** The following files from earlier
+> iterations are not part of this bundle and are not referenced by
+> the manuscript:
+> `meml75_audit_tables.py`, `meml75_check_scripts.py`, 
+> and hand-written mirror JSONs (`derived_v24.5.1.json`, etc.).
 
-## 🔬 Main Results
-*   **Parameter Balance:** The model has **11 effective fitted parameters** (10 Lagrangian parameters + the ALP misalignment angle \(\theta_i\)) fitting 16 observables, yielding \(N_{\rm dof}^{\rm fit} = +5\) (assuming the moduli are fixed by GVW fluxes).
-*   **ALP Dark Matter:** \(f_a = 1.9801 \times 10^{11}\) GeV, \(m_a = 28.407 \mu\)eV (frequency \(6.87\) GHz). Testable at future haloscope experiments (ADMX-EFR, HAYSTAC Phase III).
-*   **Leptogenesis:** \(\eta_B^{\rm pre} \approx 1.9 \times 10^{-3}\), resolved by entropy dilution \(\Delta \approx 3.13 \times 10^6\) (treated as a phenomenological parameter).
-*   **Testable Predictions:** \(\sum m_i \approx 0.068\) eV, \(m_{\beta\beta} < 8.7\) meV, and \(\delta_{CP} \approx 23^\circ\) or \(157^\circ\). The model also selects the upper octant of \(\theta_{23}\).
+## How to Reproduce
 
-## ⚙️ Reproducibility
-
-To reproduce the main results and verify the assertions in the manuscript, install the required dependencies:
-
-```bash
-pip install -r requirements.txt
+1. Install requirements: `pip install -r requirements.txt`
+2. Generate figures:

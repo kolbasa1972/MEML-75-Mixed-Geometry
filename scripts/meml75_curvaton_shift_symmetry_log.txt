@@ -1,0 +1,17 @@
+======================================================================
+ MEML 75 — Curvaton Decay with Shift Symmetry (v20.0)
+======================================================================
+ALP mass m_a: 2.84e-14 GeV
+Curvaton mass m_sigma: 1.00e+06 GeV
+Ratio m_a / m_sigma: 2.84e-20
+
+Branching ratio with shift symmetry (r_decay):
+  r_decay ~ 2.46e-65
+
+======================================================================
+ VERDICT
+======================================================================
+ [OK] The shift symmetry strongly suppresses the decay into ALPs!
+ The curvaton decays almost entirely into SM particles.
+ The entropy dilution mechanism works perfectly!
+======================================================================

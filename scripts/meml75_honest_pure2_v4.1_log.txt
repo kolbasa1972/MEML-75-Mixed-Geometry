@@ -1,0 +1,114 @@
+meml75_honest_pure2.py — CORRECTED HONEST AUDIT (v4.1)
+=====================================================================================
+  v4.1: a2/a1 uses weight-zero factor (~2.06e3); log renamed to v4.1.
+  v24.5.1 fixes: 1-param label c_d (not c_d/a1); PASSPORT
+                 relabelled REFERENCE; GVW block split by convention.
+=====================================================================================
+
+[+] Geometric scales:
+    I_geom = 0.366025
+    m_KK   = 2.0818e+14 GeV
+    M_6    = 2.9631e+16 GeV
+
+[+] BASE RATIOS vs passport:
+    base_bu        = 4.061017e-02   (passport 4.0610e-02)
+    base_cu        = 2.039782e-06   (passport 2.0398e-06)
+    base_a2 (pure) = 3.590602e-01   (passport 3.5960e-01)
+    weight_zero_d  = 3.578163e-01   (passport ~0.3578)
+    base_a2 (wz)   = 1.284776e-01   <-- v4.1 FIX: a2/a1 ~ 2060
+    base_b         = 4.271438e-02   (passport 4.2710e-02)
+    y13            = 6.768298e-03   (passport 6.7683e-03)
+    y14            = 8.886161e-02   (passport 8.8862e-02)
+
+[+] PASSPORT REFERENCE (NOT fit minimum; chi2 ~ 1378/982):
+    a1 = 4.577230e-03
+    c_d = 1.912467e-01
+    b_u/a_u = 1.3098e+05
+    c_u/a_u = 9.7200e+02
+    a_2/a_1 = 2.0605e+03   <-- should be ~2.06e3
+    b/a_1   = 5.4094e+00
+    chi2 vs PDG_PAPER  = 1378.0057
+    chi2 vs PDG_2024   = 982.3583
+
+[+] FREE-FIT of (a1, c_d) — DE + NM, wide bounds
+    bounds: la1 in [-5, 3], k = c_d/a1 in [-1000, 1000]
+
+    TRUE 2-param min vs PDG_PAPER:
+      chi2 = 13.9322  at la1=0.6480, k=9.1020
+      a1 = 4.446011e+00, c_d = 4.046751e+01
+
+    TRUE 2-param min vs PDG_2024:
+      chi2 = 29.5026  at la1=0.8110, k=10.6073
+      a1 = 6.471674e+00, c_d = 6.864692e+01
+
+[+] 1-PARAM ANALYTIC CHECK (eliminate a1 via m_b/m_t)
+    At a1=1, m_b/m_t scales as a1.  a1_opt = target / (m_b/m_t)(a1=1).
+    NOTE: obj_k_only(k) builds matrices with c_d = k directly,
+          so the fitted quantity below is c_d, not c_d/a1.
+    1-param NM: c_d = 40.466526, a1 = 4.445906e+00, c_d/a1 = 9.1020, chi2 = 13.9322
+    (matches 2-param min -> a1 is pure scale; c_d/a1 ~ 9.10)
+
+[+] LEPTON SECTOR (S4') — BOTH regimes
+    Paper Section 8 defines two fits:
+      unconstrained:      chi^2 = 0.089  (cross-check, Fig. 1)
+      constrained c2+c3=0: chi^2 = 0.309  (USED for consequences)
+
+    --- UNCONSTRAINED (paper chi^2 = 0.089) ---
+    unconstrained:
+      tau_l          = (1.5398+1.5511j)
+      (c1,c2,c3)     = (6.371, 17.46, -17.199)
+      y_nu           = 0.934
+      theta_12       = 33.50 deg
+      theta_13       = 8.53 deg
+      theta_23       = 49.00 deg
+      m1,m2,m3 [meV] = 6.476, 10.792, 50.600
+      sum(m_i) [meV] = 67.87
+      |M_nu,ee|*Lam  = 0.62 meV  (model basis, c_i real)
+      m_betabeta     = 8.43 meV  (alpha=beta=0, delta=22.9 deg)
+      m_betabeta rng = 0.08 - 8.73 meV  (Majorana phases)
+
+    --- CONSTRAINED c2+c3=0 (paper chi^2 = 0.309) ---
+    constrained:
+      tau_l          = (1.584+1.552j)
+      (c1,c2,c3)     = (-6.591, -17.4, 17.4)
+      y_nu           = 0.934
+      theta_12       = 33.64 deg
+      theta_13       = 8.53 deg
+      theta_23       = 49.05 deg
+      m1,m2,m3 [meV] = 6.391, 10.756, 50.576
+      sum(m_i) [meV] = 67.72
+      |M_nu,ee|*Lam  = 0.78 meV  (model basis, c_i real)
+      m_betabeta     = 8.37 meV  (alpha=beta=0, delta=22.9 deg)
+      m_betabeta rng = 0.01 - 8.67 meV  (Majorana phases)
+
+    Constrained vs paper (33.64, 8.53, 49.04): [OK]
+
+[+] GVW FLUX VACUA (reference)
+    NOTE: the two blocks below use different Kähler conventions.
+
+    (i) Old v23.1 reference (K = -3 ln(2y), no-scale; NON-standard):
+        (-30, 5, 16)    |DtW| = 0.0437
+        (-15, -17, 23)  |DtW| = 0.0642
+        (-16, 31, -10)  |DtW| = 0.1001
+
+    (ii) Current CS-convention values (K_cs = -ln(2y),
+         K_coeff = 1; see meml75_gvw_tau_closed_form_v2.py),
+         at fitted tau, with the same three triplets:
+        (-30, 5, 16)    |DtW| = 0.0394
+        (-15, -17, 23)  |DtW| = 0.0641
+        (-16, 31, -10)  |DtW| = 0.1021
+
+    Best-fit CS-convention triplets (meml75_flux_scan_cs.py):
+        tau_u: (-50,   1,  3), dev 1.16%
+        tau_d: (-28,  -3,  4), dev 0.37%
+        tau_l: (-48, -31, 10), dev 0.47%
+
+=====================================================================================
+ VERDICT
+=====================================================================================
+  Fit min (PDG_PAPER): chi2 = 13.9322  a1=4.446011e+00, c_d=4.046751e+01
+  Fit min (PDG_2024):  chi2 = 29.5026  a1=6.471674e+00, c_d=6.864692e+01
+  1-param check:       chi2 = 13.9322  (c_d=40.466526, c_d/a1=9.1020)
+  v4.1 NOTE: a2/a1 now uses weight-zero factor (~2.06e3),
+             matches .tex §7.3.
+=====================================================================================

@@ -1,0 +1,30 @@
+======================================================================
+ MEML 75 — Swampland (WGC) Check (v22.0, Corrected)
+======================================================================
+f_a = 1.98e+11 GeV
+Gauge coupling e = sqrt(4*pi*alpha_EM) = 0.3028
+
+--- Electric WGC ---
+Bound: S_max = M_Pl / f_a = 1.23e+07
+Typical string instantons have S ~ 10-100.
+ [OK] Electric WGC is satisfied with a large margin.
+
+--- Magnetic WGC (Standard) ---
+Bound: f_a_max = M_Pl / e = 8.04e+18 GeV
+Ratio f_a / f_a_max = 2.46e-08
+ [OK] Magnetic WGC is satisfied with a large margin.
+
+--- Anomaly Consistency Check ---
+|E/N - 1.92| = 0.7467
+This is O(1), as expected for a consistent UV completion.
+(Note: This is NOT a WGC test, but a sanity check on the DFSZ anomaly.)
+
+======================================================================
+ VERDICT
+======================================================================
+
+The ALP sector satisfies both the Electric and Magnetic WGC.
+The anomaly coefficient is O(1), consistent with DFSZ.
+The model is consistent with the Swampland criteria (WGC).
+
+======================================================================

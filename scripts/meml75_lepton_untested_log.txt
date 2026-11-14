@@ -1,0 +1,151 @@
+==============================================================================
+ meml75_lepton_untested.py — three lepton-sector tests from §13
+==============================================================================
+ tau_l = (1.584+1.552j)
+ Im(tau_l) = 1.552
+ |c1/c2| target (fit) = 0.3788
+ y_nu (fit) = 0.934
+
+==============================================================================
+ PART 1: Magnetic flux
+==============================================================================
+
+--- Setup: M_Q = M_u = M_H = 2 (paper's 'flux M=2') ---
+ Y_000 = 1.003980-0.014730j
+ Y_011: alpha=+1.00, |Y|=1.004088, |Y_000/Y_ijk|=1.0000
+ Y_110: alpha=+1.00, |Y|=1.004088, |Y_000/Y_ijk|=1.0000
+ Y_222: alpha=+3.00, |Y|=1.004088, |Y_000/Y_ijk|=1.0000
+ Y_101: alpha=+1.00, |Y|=1.004088, |Y_000/Y_ijk|=1.0000
+
+ Result: for M=2 setup, all allowed Y_ijk have integer alpha
+ -> |Y_ijk| = |Y_000| -> ratio = 1 (not 65).
+ The paper's 65 does not come from this simple setup.
+
+--- Systematic scan: which (M_Q, M_u, M_H) gives ~65? ---
+ Closest to 65: M_Q=6, M_u=-2, M_H=-4
+ |Y_000/Y_012| = 1.0000 (target 65)
+ Still cannot give 65 with small fluxes in 1-modulus setup
+
+ Interpretation: 1-modulus CI+M Yukawa on magnetized T^2
+ gives ratios ~1 for integer alpha, and ratios 0.5-2 for
+ fractional alpha. Getting 65 requires either:
+  (a) a specific cross-modulus product, or
+  (b) Kähler metric factors that differ between zero modes, or
+  (c) a multi-modulus T^2/Z_3 × T^2/Z_4 setup (mixed orbifold).
+ None of these are specified in the paper; §13.4 must specify
+ the exact flux assignment to make the 65 claim reproducible.
+
+==============================================================================
+ PART 2: Fractional CFT weights
+==============================================================================
+
+ Im(tau_l) = 1.552000
+
+ Candidate formulas:
+   (Im tau)^(1/4)            = 1.1162
+   (Im tau)^(1/3)            = 1.1578
+   (Im tau)^(3/8)            = 1.1792
+   (Im tau)^(1/2)            = 1.2458
+   (Im tau)^(2/3)            = 1.3405 <-- closest to 1.37
+   (Im tau)^(3/4)            = 1.3905 <-- closest to 1.37
+   (Im tau)^1                = 1.5520
+   (2 Im tau)^(3/4)          = 2.3385
+   |Y_1/4| / |Y_1/2|         = 0.0873
+   |Y_1/2| / |Y_1/4|         = 11.4487
+
+ Closest to paper's 1.37: (Im tau)^(3/4) = 1.3905
+ Fit needs: 0.3788
+ Factor discrepancy: 3.67
+
+ Interpretation: fractional CFT weights give c1/c2 ~ 1.37-1.39,
+ which is O(1) but factor ~3.7 above the fit value 0.379.
+ INCONSISTENT with fit; negative result as claimed in §13.6.
+
+==============================================================================
+ PART 3: SO(10) for y_nu
+==============================================================================
+
+ y_nu (fit at M_6) = 0.934
+ y_t(M_GUT) = 0.483
+ SO(10) at M_GUT: y_nu = 2 y_t = 0.9660
+
+ Direct comparison at M_GUT:
+   y_nu_fit / y_nu_SO10 = 0.9669
+   Deviation = 3.31%
+   Paper claim: ~3% agreement -> CONSISTENT at M_GUT
+
+ M_6/M_GUT = 1.480
+ Delta log = 0.3920
+ One-loop MSSM running (3 y_t^2 term only):
+   y_nu(M_6)/y_nu(M_GUT) = 1 + 0.0017
+   = 1.0017
+   -> negligible running
+
+ Old v24.4 claim: y_nu^fit / y_nu^RGE = 1.95
+ Implied: y_nu^RGE = 0.4790
+ Compare: y_nu_SO10(M_GUT) = 0.9660
+ y_nu_SO10 / y_nu_RGE = 2.0168
+ RGE from M_GUT to M_6 alone reduces y_nu by factor ~1.0017
+ -> RGE from M_GUT to M_6 alone CANNOT explain the ~1.38/2.28 gap.
+
+ Naive long-interval RGE (GUT to M_SUSY ~ 1 TeV):
+ Delta log = 30.63
+ Factor y_nu(TeV)/y_nu(GUT) = exp(3 y_t^2 log / 16pi^2) = 1.3299
+ This IS O(2)! But it's running GUT -> TeV, not GUT -> M_6.
+
+ --- Small tanβ scenario: y_t(M_GUT) = 0.7 ---
+ SO(10) at M_GUT: y_nu = 2 y_t = 1.4000
+ (cf. paper: y_t(M_GUT) ~ 0.7 for small tanβ)
+ Long-interval RGE factor (GUT->TeV, y_t_avg=0.85) = 1.5225
+ y_nu(M_SUSY) from minimal SO(10) = 2.1316
+ Fit needs y_nu = 0.934
+ Ratio (requires 126_H) = 2.28
+ Paper claim for small tanβ: factor ~2.28
+
+ Sensitivity: RGE factor vs assumed y_t_avg (small tanβ):
+   y_t_avg=0.70 -> RGE factor 1.330, ratio to fit 1.99
+   y_t_avg=0.75 -> RGE factor 1.387, ratio to fit 2.08
+   y_t_avg=0.80 -> RGE factor 1.451, ratio to fit 2.18
+   y_t_avg=0.85 -> RGE factor 1.523, ratio to fit 2.28
+   y_t_avg=0.90 -> RGE factor 1.602, ratio to fit 2.40
+   y_t_avg=0.95 -> RGE factor 1.691, ratio to fit 2.53
+   y_t_avg=1.00 -> RGE factor 1.789, ratio to fit 2.68
+
+ Interpretation: the paper's large-tanβ factor (~1.38) and
+ small-tanβ factor (~2.28) both come from running between
+ GUT scale and SUSY scale (long interval), NOT from M_GUT to M_6
+ (short interval, factor ~1.0017).
+ With long-interval running, y_nu at M_SUSY is factor ~1.3-1.5 larger
+ than at M_GUT, which is compatible with the claim.
+ Verdict: minimal SO(10) (y_nu = 2 y_t at GUT) gives y_nu(M_SUSY)
+ = 1.285 (large tanβ), but fit needs 0.934. Factor discrepancy
+ 1.38 requires 126_H.
+
+==============================================================================
+ SUMMARY: three lepton-sector claims from §13
+==============================================================================
+
+  (1) Magnetic flux:
+       Paper claim: |Y_000/Y_011| ~ 65 for 'flux M=2'
+       Fit needs: |c1/c2| = 0.379
+       Status:      INCONSISTENT (65 vs 0.379) -- negative, as claimed
+       Note:        our simple 1-modulus scan finds ratios ~1, not 65;
+                    the exact 65 requires a specific setup (multi-modulus,
+                    Kähler factors, or mixed orbifold) not detailed in §13.4.
+
+  (2) Fractional CFT weights:
+       Paper claim: c1/c2 ~ 1.37
+       Our computation: (Im tau_l)^(3/4) = 1.3905,
+                        close to 1.37 (weight difference 3/4)
+       Fit needs: |c1/c2| = 0.379
+       Status: INCONSISTENT (factor ~3.7 off) -- negative, as claimed
+
+  (3) SO(10) for y_nu:
+       Large tanβ (y_t(M_GUT)=0.483): y_nu_SO10(M_GUT)=0.966,
+         ratio after long RGE = 1.38 (paper: ~1.38)
+       Small tanβ (y_t(M_GUT)=0.7): y_nu_SO10(M_GUT)=1.40,
+         ratio after long RGE = 2.28 (paper: ~2.28)
+       Status: both require 126_H -- negative, as claimed.
+       See sensitivity table above for y_t_avg dependence.
+
+==============================================================================

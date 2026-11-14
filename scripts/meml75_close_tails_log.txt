@@ -1,0 +1,26 @@
+
+=== paper @ 10% ===
+  3-param min: chi2=13.8563  at a1=4.5605e+00, c_d=4.0416e+01, r*=2008.8
+  r=2060.5   : chi2=13.9322  ->  Delta chi2=+0.0759 (0.28 sigma)
+  tail2 spread over [2055,2068]: 0.0379 (argmin r=2055.0)
+
+=== PDG2024 @ 5% ===
+  3-param min: chi2=107.2907  at a1=7.6000e+00, c_d=6.8146e+01, r*=1754.5
+  r=2060.5   : chi2=118.0109  ->  Delta chi2=+10.7202 (3.27 sigma)
+  tail2 spread over [2055,2068]: 0.7801 (argmin r=2055.0)
+
+=== PDG2024 @ 10% ===
+  3-param min: chi2=26.8227  at a1=7.6000e+00, c_d=6.8146e+01, r*=1754.5
+  r=2060.5   : chi2=29.5027  ->  Delta chi2=+2.6801 (1.64 sigma)
+  tail2 spread over [2055,2068]: 0.1950 (argmin r=2055.0)
+
+=== combined ===
+  3-param min: chi2=138.6272  at a1=6.5658e+00, c_d=-5.8667e+01, r*=1810.8
+  r=2060.5   : chi2=147.5075  ->  Delta chi2=+8.8803 (2.98 sigma)
+  tail2 spread over [2055,2068]: 0.8172 (argmin r=2055.0)
+
+=== PASSPORT v24.4 additions ===
+  paper @ 10%: chi2_3p=13.8563, r*=2008.8, chi2(2060.5)=13.9322, dchi=+0.0759, 0.28sigma, tail2_spread=0.0379
+  PDG2024 @ 5%: chi2_3p=107.2907, r*=1754.5, chi2(2060.5)=118.0109, dchi=+10.7202, 3.27sigma, tail2_spread=0.7801
+  PDG2024 @ 10%: chi2_3p=26.8227, r*=1754.5, chi2(2060.5)=29.5027, dchi=+2.6801, 1.64sigma, tail2_spread=0.1950
+  combined: chi2_3p=138.6272, r*=1810.8, chi2(2060.5)=147.5075, dchi=+8.8803, 2.98sigma, tail2_spread=0.8172

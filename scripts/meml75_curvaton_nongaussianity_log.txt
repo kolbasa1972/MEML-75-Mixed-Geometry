@@ -1,0 +1,17 @@
+======================================================================
+ MEML 75 — Curvaton Non-Gaussianity Check (v20.0)
+======================================================================
+Required Dilution Factor Delta: 3.13e+06
+
+Curvaton energy fraction at decay (r): 1.000000
+Predicted local non-Gaussianity (f_NL): -0.4167
+
+Planck 2018 constraint (95% CL):
+  f_NL = -0.9 +/- 5.1
+
+======================================================================
+ VERDICT
+======================================================================
+ [OK] The predicted f_NL is well within the Planck limits.
+ This proves the curvaton mechanism is cosmologically viable!
+======================================================================

@@ -1,0 +1,16 @@
+======================================================================
+ MEML 75 — Flux Selection Rule Test (One Period)
+======================================================================
+Fluxes: M_Q=-5, M_u=-7, M_H=12 (Sum = 0)
+
+Total combinations checked (one period): 420
+Allowed by selection rule: 1
+Allowed indices (I, J, K):
+  Y_000
+
+======================================================================
+ VERDICT
+======================================================================
+ [OK] Only Y_000 survives. No hierarchy can be generated from these fluxes.
+ This provides a strong argument for the necessity of A4 modular forms.
+======================================================================

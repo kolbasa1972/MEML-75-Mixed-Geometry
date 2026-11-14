@@ -1,0 +1,55 @@
+======================================================================
+ meml75_v24.5_audit.py (v4.0 — honest, JSON-based, no overrides)
+======================================================================
+ SCOPE:
+   [1] log-content check (NOT re-derivation)
+   [2] physics re-derivation (m_ββ)
+   [3] JSON numerical check (RGE suppression, no log parsing)
+   [4] physics re-derivation (b/a₁ from modular forms)
+   [5] physics re-derivation (Y⁽⁴⁾ convention)
+ What this does NOT verify: structural quark fit, lepton fit,
+ GVW saddle, ALP/WGC. See dedicated scripts (see docstring).
+======================================================================
+
+[1] χ² = 13.93/29.50; a₁, c_d  [log-content check, not re-derivation]
+  [PASS] chi2 = 13.9322/29.5026 present in meml75_honest_pure2_v4.1_log.txt (re-derivation in meml75_honest_pure2.py)
+
+[2] m_ββ: 8.37/8.37/8.67, range [0, 8.67]  [physics re-derivation]
+    m_ββ(δ= 22.9°, α=β=0) = 8.374 meV  (expect 8.37)
+    m_ββ(δ=157.1°, α=β=0) = 8.374 meV  (expect 8.37)
+    m_ββ(δ=  0.0°, α=β=0) = 8.673 meV  (expect 8.67)
+    range over (α,β): [0.0011, 8.6732] meV  (expect ~[0, 8.67])
+  [PASS] m_ββ headline and range consistent
+
+[3] RGE для y_ν: SUPPRESSION (JSON-based)
+    Read 2 scenario(s) from meml75_lepton_untested_v2_results.json
+      large tanbeta: y_nu_fixed=0.4185, y_nu_susy=0.5276, ratio_to_fit=0.5649, kappa_ratio=1.3122
+      small tanbeta: y_nu_fixed=0.0000, y_nu_susy=0.5437, ratio_to_fit=0.5822, kappa_ratio=0.9733
+    [OK] quasi-IR point y_ν^fixed ∈ [0.3, 0.5] in >=1 scenario
+    [OK] all y_ν(SUSY) < y_ν^fit = 0.934
+    [OK] all two_loop.ratio_y_nu < 1.0
+    [OK] kappa_ratio > 1.0 in >=1 scenario (explains where '1.38' came from: κ, not y_ν)
+  [PASS] RGE suppression (JSON, no log parsing, no overrides)
+
+[4] b/a₁ = 5.41, miss < 4.5%  [physics re-derivation]
+    base_b = |Y2[2]/Y6[0]| at TAU_D = 4.271438e-02
+    y14 = 8.886161e-02
+    b/a₁ = base_b · y14⁻² = 5.409358
+    target = 5.63, miss = 3.92%  (expect < 4.5%)
+  [PASS] b/a₁ = 5.4094, miss 3.92% < 4.5%
+
+[5] Y⁽⁴⁾ convention (using TAU_D)  [physics re-derivation]
+    paper  |Y3/Y2| = 0.3578  (expect ~0.3578)
+    swap   |Y3/Y2| = 2.7947  (expect ~2.79)
+  [PASS] Y⁽⁴⁾ convention consistent at TAU_D
+
+======================================================================
+ Summary
+======================================================================
+  [1] PASS
+  [2] PASS
+  [3] PASS
+  [4] PASS
+  [5] PASS
+
+[VERDICT] OK: 5 PASS, 0 SKIP, 0 FAIL

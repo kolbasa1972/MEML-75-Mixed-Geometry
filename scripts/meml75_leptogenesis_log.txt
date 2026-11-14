@@ -1,0 +1,47 @@
+==============================================================================
+ meml75_leptogenesis.py — CP asymmetry and eta_B^pre
+==============================================================================
+ Inputs:
+   M_R (heavy neutrino scale) = 2.9631e+16 GeV
+   m1 = 6.39 meV, m2 = 10.75 meV, m3 = 50.55 meV
+   v = 246.22 GeV, kappa = 1.0, g_* = 106.75
+
+[Step 1] Davidson-Ibarra upper bound on |epsilon_CP|
+  |epsilon_CP| <= (3/16pi) * M_R * (m3 - m1) / v^2
+                = 1.2882
+
+[Step 2] Pre-dilution baryon asymmetry (from paper epsilon_CP = 0.57)
+  eta_B^pre = (28/79) * 0.57 * 1.0 / 106.75
+            = 1.8925e-03
+  Paper: eta_B^pre = 1.9000e-03  [OK]
+
+[Step 3] Required epsilon_CP to reproduce eta_B^obs
+  eta_B^pre (required) = eta_B^obs * Delta
+                       = 6.1200e-10 * 3.1300e+06
+                       = 1.9156e-03
+  epsilon_CP (required) = eta_B^pre * g_* / ((28/79) * kappa)
+                        = 0.5769
+  Paper: epsilon_CP = 0.57  [OK]
+
+[Step 4] Consistency check: required epsilon vs Davidson-Ibarra bound
+  Required: 0.5769
+  Bound:    1.2882
+  [OK] Required epsilon_CP is below the DI bound
+
+[Step 5] Required dilution Delta (from paper epsilon_CP)
+  Delta = eta_B^pre / eta_B^obs = 1.8925e-03 / 6.1200e-10
+        = 3.0923e+06
+  Paper: Delta = 3.1300e+06  [OK]
+
+==============================================================================
+ VERDICT
+==============================================================================
+  [OK] eta_B^pre matches paper
+  [OK] epsilon_CP matches paper
+  [OK] epsilon_CP below DI bound
+  [OK] Delta matches paper
+
+  All checks passed. Numbers in §9 (leptogenesis) are internally consistent.
+  Note: epsilon_CP ~ 0.57 is LARGE (O(1)), requiring near-maximal CP phases.
+  This is allowed by the DI bound but is a strong requirement.
+==============================================================================

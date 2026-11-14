@@ -1,0 +1,30 @@
+======================================================================
+ MEML 75 — Kähler Scan (Corrected Normalization + Modular Forms)
+======================================================================
+
+Best up-sector fit (extended range):
+  k1=5, k2=11, k3=3, alpha=19.13
+  b_u/a_u = 1.4320e+05 (target 1.3533e+05)
+  c_u/a_u = 7.1857e+02 (target 7.3287e+02)
+  Up-sector log-error = 0.0331
+
+Down-sector with same parameters:
+  a2/a1 = 9.6651e+13 (target 2.0700e+03)
+  b/a1  = 1.2858e+04 (target 5.6100e+00)
+  Deviation a2/a1: +10.67 orders
+  Deviation b/a1:  +3.36 orders
+  Down-sector log-error = 14.0295
+
+Boundary check: k2=11 (scan up to 25)
+
+======================================================================
+ VERDICT
+======================================================================
+ Up-sector log-error:   0.033
+ Down-sector log-error: 14.029
+ Global log-error:      14.063
+ (threshold for acceptable simultaneous fit: global log-error < 0.5)
+ [NEGATIVE] No simultaneous fit; down-sector is off.
+            This is the negative result reported in
+            v24.5.1 Section 14, Item 6.
+======================================================================
