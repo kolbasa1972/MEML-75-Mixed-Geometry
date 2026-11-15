@@ -1,4 +1,5 @@
 # MEML 75 (v24.5.5) - Collected Files
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24252252.svg)](https://doi.org/10.5281/zenodo.24252252) [![Version](https://img.shields.io/badge/version-v24.6.0-blue)](https://zenodo.org/record/24252252)
 
 Reproducible bundle for the manuscript Model MEML 75 (v24.5.5).
 
