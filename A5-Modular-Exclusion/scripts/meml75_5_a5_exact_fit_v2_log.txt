@@ -1,0 +1,9 @@
+[TEST] Checking T-eigenvalues of Y_3, Y_3', Y_5...
+  Y3 T-eigenvalues: 1, w5, w5^2 (OK)
+  Y3' T-eigenvalues: 1, w5, w5^2 (OK)
+  Y5 T-eigenvalues: 1, w5, w5^2, w5^3, w5^4 (OK)
+[TEST] All T-eigenvalues match the paper!
+[SCAN] Starting L~3 pure quintet scan (exact q-expansions)...
+[SCAN] Best chi2 = 484037.47
+[SCAN] Parameters: tau = -0.4915 + 0.5001i, c = 2.2941
+[SCAN] Boundary flags: [True, True, False]

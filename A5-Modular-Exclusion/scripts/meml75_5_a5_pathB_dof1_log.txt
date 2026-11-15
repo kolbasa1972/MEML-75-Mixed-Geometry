@@ -1,0 +1,38 @@
+Path B: dof=+1 configurations
+Precondition: if best chi2 > 10 -> Path A (honest negative).
+If best chi2 in [1,10] -> phenomenological fit (tau fitted).
+NOTE: mixing weights 2,4,6 with constant c_i is NOT modular invariant.
+
+============================================================
+B1: one weight-6 quintet (c6b=0), real coefficients
+============================================================
+chi2 = 4020.2928
+tau = -0.007810+0.999970j, |tau| = 1.000000
+params: [-0.00780999  0.9999695   0.23055516 -0.29507617]
+dof = 1
+
+[BREAKDOWN]
+  s12sq     : model = +0.984189, exp = +0.304000, pull = +56.68 sigma
+  s13sq     : model = +0.022737, exp = +0.022200, pull = +0.77 sigma
+  s23sq     : model = +0.005222, exp = +0.573000, pull = -28.39 sigma
+  dm21_dm31 : model = +0.029650, exp = +0.029600, pull = +0.17 sigma
+  sin_delta : model = -0.028426, exp = -0.259000, pull = +0.92 sigma
+
+============================================================
+B2: both weight-6 quintets (c6a=c6b=c6), real coefficients
+============================================================
+chi2 = 711.8012
+tau = -0.084263+1.143030j, |tau| = 1.146132
+params: [-0.08426301  1.14303016 20.         15.32134894]
+dof = 1
+
+[BREAKDOWN]
+  s12sq     : model = +0.318238, exp = +0.304000, pull = +1.19 sigma
+  s13sq     : model = +0.003827, exp = +0.022200, pull = -26.25 sigma
+  s23sq     : model = +0.663100, exp = +0.573000, pull = +4.51 sigma
+  dm21_dm31 : model = +0.029814, exp = +0.029600, pull = +0.71 sigma
+  sin_delta : model = -0.057468, exp = -0.259000, pull = +0.81 sigma
+
+============================================================
+BEST chi2 = 711.8012
+DECISION: chi2 > 10 -> Path A (honest negative).

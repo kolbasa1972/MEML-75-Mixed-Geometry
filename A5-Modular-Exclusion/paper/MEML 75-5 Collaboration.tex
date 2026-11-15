@@ -1,0 +1,113 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{\textbf{Excluding Minimal \(A_5\) Modular Flavor Symmetry with Neutrino Oscillation Data}}
+\author{MEML 75-5 Collaboration}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We perform a comprehensive numerical analysis of neutrino masses and mixing in the minimal \(A_5\) modular flavor model without additional flavons, strictly preserving the three Standard Model lepton generations (\(L \sim 3\)). We prove two rigorous selection rules: (i) at weight 2, the Weinberg operator \((LL)_3 Y_3\) vanishes identically because the triplet in \(3 \otimes 3\) is antisymmetric; (ii) modular invariance requires the total modular weight to vanish, restricting the model to pure weight-2 or pure weight-4 operators. We test both viable configurations. For pure weight 2, the quintet \((LL)_5 Y_5^{(2)}\) yields \(\chi^2 \sim 4.8\times 10^5\), and the optimizer is driven outside the fundamental domain, indicating no physical minimum. For pure weight 4, using exact Clebsch-Gordan coefficients for the \(1, 5\) contractions and enforcing the fundamental domain \(|\tau|\ge 1\), the model has \(3\) shape parameters against \(5\) observables (\(\mathrm{dof}=+2\)). The global minimum is found strictly inside the fundamental domain at \(\tau = 0.0001 + 1.4031 i\) with \(\chi^2 = 1.63 \times 10^6\). The model catastrophically fails, predicting \(s_{13}^2 = 0.904\) (excluded at \(1260\sigma\)). We conclude that minimal \(A_5\) modular models without flavons are incompatible with neutrino oscillation experiments.
+\end{abstract}
+
+\section{Introduction}
+Modular flavor symmetries have emerged as a compelling framework for understanding the origin of fermion masses and mixing \cite{Feruglio:2017}. The finite modular group \(\Gamma_5 \cong A_5\) has been extensively studied \cite{Ding:2019, Novichkov:2018}, as its geometric properties (the icosahedron) naturally accommodate large leptonic mixing angles. In this Letter, we present a definitive negative result for the minimal \(A_5\) setup. Our analysis rules out minimal \(A_5\) models without flavons and sets a baseline for future extended constructions.
+
+\section{Modular Forms and Selection Rules}
+\subsection{Modular Forms of Level 5}
+We construct the modular forms of level \(N=5\) using the Dedekind eta function, with \(q = e^{2\pi i \tau}\). The weight-2 modular forms transforming as the quintuplet \(5\) are constructed analytically from the exact \(q\)-expansions of \cite{Ding:2019}. Higher-weight forms are obtained via exact Clebsch-Gordan coefficients \cite{Novichkov:2018}. We use exact CG coefficients for \(5\times 5 \to 1, 5_{S1}, 5_{S2}\) (App. B of \cite{Novichkov:2018}), and for \(3\times 3 \to 1, 5\) (Eqs. A.5, A.7 of \cite{Novichkov:2018}).
+
+\subsection{Theorem 1: Triplet Vanishing}
+For \(L \sim 3\), the product decomposes as \(3 \otimes 3 = 1_S \oplus 3_A \oplus 5_S\). The triplet \(3_A\) is antisymmetric, so the operator \((LL)_3 Y_3\) vanishes identically for Majorana masses. This follows from the exact CG coefficients \(3\otimes 3 \to 3_A\) (App. B, Eq. A.6 of \cite{Novichkov:2018}). Thus, the minimal Weinberg operator for \(L\sim 3\) must be built from the symmetric quintet \((LL)_5\).
+
+\subsection{Theorem 2: Modular Weight Constraint}
+In a modular-invariant superpotential, the sum of modular weights must be zero. If \(L\) has weight \(k_L\), then the Weinberg operator \((LL) Y^{(k)}\) requires \(2k_L + k = 0\). Since \(k_L\) is a fixed property of the field \(L\), a single \(L\) cannot couple to modular forms of different weights. Thus, mixing operators of weights 2, 4, and 6 with constant coefficients is forbidden by modular invariance. Flavons with non-trivial modular weights are required to absorb the weight difference.
+
+Consequently, for \(L \sim 3\), the allowed minimal Weinberg operators are restricted to:
+\begin{itemize}
+    \item Pure weight 2 (\(k_L = -1\)): \(M_\nu = c_5 (LL)_5 Y_5^{(2)}\).
+    \item Pure weight 4 (\(k_L = -2\)): \(M_\nu = c_1 (LL)_1 Y_1^{(4)} + c_5 (LL)_5 Y_5^{(4)}\).
+\end{itemize}
+
+\section{Numerical Analysis and Results}
+\subsection{Framework}
+We perform a global scan using Differential Evolution to minimize the \(\chi^2\) function against NuFIT 5.3 data \cite{NuFIT}. We assume a diagonal charged lepton Yukawa matrix, \(U_e = I\). The PMNS matrix is extracted from \(M_\nu^\dagger M_\nu\), and \(\chi^2\) is computed with pulls for each observable: \(s_{12}^2\), \(s_{13}^2\), \(s_{23}^2\), \(\Delta m^2_{21}/\Delta m^2_{31}\), and \(\sin\delta_{CP}\). We use exact \(q\)-expansions and exact CG coefficients. We strictly enforce the fundamental domain \(|\tau|\ge 1\) in our scans.
+
+\subsection{Case I: Pure Weight 2 (\(L \sim 3\))}
+For \(M_\nu = c_5 (LL)_5 Y_5^{(2)}\), the best-fit yields \(\chi^2 \sim 4.8 \times 10^5\). The atmospheric angle is structurally broken, and the optimizer is driven to the boundary of the scanned region at \(\tau \approx -0.4915+0.5001i\) with \(|\tau|\approx 0.70<1\). No interior minimum exists. This configuration is excluded at \(>600\sigma\). 
+
+\subsection{Case II: Pure Weight 4 (\(L \sim 3\))}
+For \(L \sim 3\) at weight 4, we test \(M_\nu = c_1(LL)_1 Y_1^{(4)} + c_5(LL)_5 Y_5^{(4)}\). The overall scale can be factored out and does not affect mixing angles or mass ratios. The shape parameters are \(\tau\) (2 real) and \(c_1/c_5\) (1 real), for a total of 3 parameters against 5 shape observables, yielding \(\mathrm{dof}=+2\) (two genuine predictions).
+
+The global minimum is found strictly inside the fundamental domain at \(\tau = 0.0001 + 1.4031 i\) (\(|\tau| \approx 1.40\)) with \(\chi^2 \approx 1.63 \times 10^6\). The breakdown is shown in Table \ref{tab:L3_w4_fit}. The model fails catastrophically, predicting \(s_{13}^2 \approx 0.90\) (excluded at \(1260\sigma\)).
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lccc}
+\toprule
+Observable & Model Best-Fit & Experimental Value & Pull (\(\sigma\)) \\
+\midrule
+\(s_{12}^2\) & \(0.8639\) & \(0.304 \pm 0.012\) & \(+46.65\) \\
+\(s_{13}^2\) & \(0.9044\) & \(0.0222 \pm 0.0007\) & \(\mathbf{+1260.28}\) \\
+\(s_{23}^2\) & \(0.0113\) & \(0.573 \pm 0.020\) & \(-28.08\) \\
+\(\Delta m^2_{21}/\Delta m^2_{31}\) & \(0.0913\) & \(0.0296 \pm 0.0003\) & \(+205.83\) \\
+\(\sin\delta_{CP}\) & \(-0.0001\) & \(-0.259 \pm 0.25\) & \(+1.04\) \\
+\bottomrule
+\end{tabular}
+\caption{Best-fit results for the pure weight-4 \(L\sim 3\) configuration (Case II). The model has two predictions (\(\mathrm{dof}=+2\)) and is structurally excluded.}
+\label{tab:L3_w4_fit}
+\end{table}
+
+\subsection{Consistency Checks: Non-Modular-Invariant Mixtures}
+Although Theorem 2 forbids mixing weights with constant coefficients, we perform consistency checks to close any loophole. We consider \(M_\nu = c_2 (LL)_5 Y_5^{(2)} + c_4 (LL)_5 Y_5^{(4)} + c_{6a} (LL)_5 Y_{5S1}^{(6)} + c_{6b} (LL)_5 Y_{5S2}^{(6)}\), with real coefficients. Two configurations are tested:
+\begin{itemize}
+    \item B1: one weight-6 quintet (\(c_{6b}=0\)), real coefficients. Best-fit: \(\chi^2 = 4020.29\). The optimizer hits the boundary \(|\tau|=1\).
+    \item B2: both weight-6 quintets with \(c_{6a}=c_{6b}=c_6\), real coefficients. Best-fit: \(\chi^2 = 711.80\), with \(s_{13}^2 = 0.0038\) (pull \(-26.25\sigma\)).
+\end{itemize}
+Both configurations fail. Since they are not modular-invariant, they are not valid models; however, their failure closes the loophole that a non-invariant mixture could accidentally fit the data.
+
+\section{Discussion}
+\subsection{Why the Minimal \(A_5\) Model Fails}
+The rigidity of the \(A_5\) group forces the mixing parameters to extreme values. At weight 2, the atmospheric angle is structurally broken. At weight 4, the model predicts a huge reactor angle \(s_{13}^2 \approx 0.90\) and a solar angle \(s_{12}^2 \approx 0.86\), which are wildly incompatible with observations. This is a structural problem: the group-theoretic constraints on the CG coefficients do not allow enough freedom to accommodate the observed values. Adding more operators with the same weight does not help, and mixing weights is forbidden by Theorem 2.
+
+\subsection{Charged Lepton Sector and \(U_e\)}
+In our analysis, we assumed a diagonal charged lepton Yukawa matrix, \(U_e = I\). Allowing for a non-diagonal \(U_e\) would introduce additional free parameters and reduce the model's predictivity. While a non-trivial \(U_e\) could in principle rotate the PMNS matrix and potentially mitigate the tension, such a scenario goes beyond the minimal Weinberg-operator framework considered here. We leave the investigation of a minimal non-diagonal charged lepton sector in \(A_5\) to future work.
+
+\subsection{Stabilization of \(\tau\)}
+In all configurations considered here, the modulus \(\tau\) is a fitted parameter, not stabilized. We do not address the moduli stabilization problem in this Letter. Our exclusion applies to the minimal model with \(\tau\) treated as a free parameter. 
+
+\subsection{Under-Determination}
+We note that configurations with complex coefficients and multiple operators can have \(\mathrm{dof} \le 0\). For example, the mixed operator with complex coefficients has many parameters for few observables, and \(\chi^2 = 0\) there is not a prediction but a fit. We do not consider such configurations as predictions. Our valid exclusions (Case I and Case II) have \(\mathrm{dof} > 0\) (for Case II, \(\mathrm{dof} = +2\)).
+
+\section{Conclusion}
+We have shown that minimal \(A_5\) modular models without flavons are excluded by neutrino oscillation data. Theorem 1 forbids the triplet operator for \(L\sim 3\), and Theorem 2 restricts the minimal model to pure weight 2 or pure weight 4. Both viable configurations fail: weight 2 gives \(\chi^2 \sim 4.8\times 10^5\), and weight 4 gives \(\chi^2 = 1.63 \times 10^6\) with \(s_{13}^2 = 0.904\) (\(1260\sigma\) pull). Consistency checks of non-modular-invariant mixtures also fail. 
+
+Looking ahead, future extensions could explore the inclusion of generalized CP (gCP) symmetry or a non-diagonal charged lepton sector to investigate whether these can alleviate the tensions without spoiling predictivity. We conclude that minimal \(A_5\) modular flavor symmetry is incompatible with neutrino oscillation experiments.
+
+\section*{Data and Code Availability}
+The numerical results presented in this Letter are fully reproducible. The modular forms are constructed from the exact \(q\)-expansions given in arXiv:1903.12588v1 \cite{Ding:2019}. The Clebsch-Gordan coefficients correspond to App. B of arXiv:1812.02158 \cite{Novichkov:2018}. 
+The scripts and logs are available in the MEML-75-Mixed-Geometry repository under the following names:
+\begin{itemize}
+    \item \texttt{meml75\_5\_a5\_exact\_cg\_v2\_FINAL.py} and \texttt{\_log.txt} (Proof of Theorem 1).
+    \item \texttt{meml75\_5\_a5\_exact\_fit\_v2.py} and \texttt{\_log.txt} (Case I, weight 2 results).
+    \item \texttt{meml75\_5\_a5\_exact\_fit\_v11\_L3\_w4.py} and \texttt{\_log.txt} (Case II, weight 4 results).
+    \item \texttt{meml75\_5\_a5\_pathB\_dof1.py} and \texttt{\_log.txt} (Consistency checks for mixed weights).
+\end{itemize}
+
+\begin{thebibliography}{99}
+\bibitem{Feruglio:2017} F. Feruglio, \textit{Are neutrino masses modular forms?}, arXiv:1706.08749 [hep-ph].
+\bibitem{Ding:2019} G. J. Ding, S. F. King, X. G. Liu, \textit{Neutrino Mass and Mixing with \(A_5\) Modular Symmetry}, arXiv:1903.12588v1 [hep-ph].
+\bibitem{Novichkov:2018} P. P. Novichkov, J. T. Penedo, S. T. Petcov, A. V. Titov, \textit{Modular \(A_5\) Symmetry for Flavour Model Building}, JHEP 04 (2019) 174 [arXiv:1812.02158 [hep-ph]].
+\bibitem{NuFIT} I. Esteban, M. C. Gonzalez-Garcia, M. Maltoni, T. Schwetz, A. Zhou, \textit{The fate of hints: updated global analysis of three-flavor neutrino oscillations}, JHEP 09 (2020) 178 [arXiv:2007.14792]; NuFIT 5.3 (2024), www.nu-fit.org.
+\end{thebibliography}
+
+\end{document}

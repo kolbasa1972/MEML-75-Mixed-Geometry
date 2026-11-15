@@ -1,0 +1,12 @@
+[SCAN] L~3 pure weight 4 (physically correct, 3 generations)
+[DOF]    +2 (5 obs, 3 shape params: tau(2) + c1/c5(1))
+[SCAN] Best chi2 = 1633636.8924
+[SCAN] tau = 0.0001 + 1.4031i  (|tau| = 1.4031)
+[SCAN] c1/c5 = 1.4319
+
+[BREAKDOWN]
+  s12sq     : model = +0.863852, exp = +0.304000, pull = +46.65 sigma
+  s13sq     : model = +0.904396, exp = +0.022200, pull = +1260.28 sigma
+  s23sq     : model = +0.011309, exp = +0.573000, pull = -28.08 sigma
+  dm21_dm31 : model = +0.091348, exp = +0.029600, pull = +205.83 sigma
+  sin_delta : model = -0.000081, exp = -0.259000, pull = +1.04 sigma
